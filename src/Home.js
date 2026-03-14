@@ -88,28 +88,28 @@ export default function Home() {
               lg:relative lg:z-0 lg:h-min lg:w-min lg:translate-y-0 lg:border-none lg:bg-transparent lg:px-10 lg:backdrop-blur-0 lg:flex lg:justify-center lg:space-x-10 xl:space-x-14`}
             >
               <a
-                href="/"
+                href="/Portfolio-Hamza-Kiry/#/"
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 Home
               </a>
 
               <a
-                href="/projects"
+                href="/Portfolio-Hamza-Kiry/#/projects"
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 Projects
               </a>
 
               <a
-                href="#about"
+                href="/Portfolio-Hamza-Kiry/#/about"
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 About
               </a>
 
               <a
-                href="#contact"
+                href="/Portfolio-Hamza-Kiry/#/contact"
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 Contact
