@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/hamza-portfolio/static/css/main.dce450f0.css",
+    "main.js": "/hamza-portfolio/static/js/main.14e0b06c.js",
+    "static/js/787.8517b185.chunk.js": "/hamza-portfolio/static/js/787.8517b185.chunk.js",
+    "static/media/Pro9.png": "/hamza-portfolio/static/media/Pro9.f10fa1b89936a3a16ab5.png",
+    "static/media/Card_3.png": "/hamza-portfolio/static/media/Card_3.7f56a64c3ab6ad659ac5.png",
+    "static/media/Pro1.png": "/hamza-portfolio/static/media/Pro1.254a237e3cb27a5174c5.png",
+    "static/media/Pro2.png": "/hamza-portfolio/static/media/Pro2.758323ac9ed4ab031b8e.png",
+    "static/media/Pro7.png": "/hamza-portfolio/static/media/Pro7.e4dec6c73944b13ff7f3.png",
+    "static/media/Pro4.png": "/hamza-portfolio/static/media/Pro4.46a4a6a8c9fd1f617a17.png",
+    "static/media/Pro8.png": "/hamza-portfolio/static/media/Pro8.d8570b920612269147bc.png",
+    "static/media/Card_1.png": "/hamza-portfolio/static/media/Card_1.7fa700f47195e874dc64.png",
+    "static/media/Card2.jpeg": "/hamza-portfolio/static/media/Card2.9da01b9220e95b53d7b5.jpeg",
+    "static/media/Pro3.jpg": "/hamza-portfolio/static/media/Pro3.e809f4dded1c7a119451.jpg",
+    "index.html": "/hamza-portfolio/index.html",
+    "main.dce450f0.css.map": "/hamza-portfolio/static/css/main.dce450f0.css.map",
+    "main.14e0b06c.js.map": "/hamza-portfolio/static/js/main.14e0b06c.js.map",
+    "787.8517b185.chunk.js.map": "/hamza-portfolio/static/js/787.8517b185.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dce450f0.css",
+    "static/js/main.14e0b06c.js"
+  ]
+}
