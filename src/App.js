@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, HashRouter  as Router, Routes } from "react-router-dom";
-import "./App.css";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";import "./App.css";
 import Home from "./Home";
 import Projects from "./Projects";
 import CardList from "./components/CardList";

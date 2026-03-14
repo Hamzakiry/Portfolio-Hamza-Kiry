@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { HeroParallax } from "./components/ui/hero-parallax";
 import { Meteors } from "./components/ui/meteors";
 import { SiGithub, SiLinkedin, SiGmail } from "react-icons/si";
@@ -39,9 +40,9 @@ export default function Home() {
     {
       title: "Navigation",
       child: [
-        { name: "Home", link: "/" },
-        { name: "Projects", link: "/projects" },
-        { name: "Contact", link: "#contact" },
+        { name: "Home", type: "route", link: "/" },
+        { name: "Projects", type: "route", link: "/projects" },
+        { name: "Contact", type: "scroll", link: "contact" },
       ],
     },
   ];
@@ -60,6 +61,14 @@ export default function Home() {
     setShowNavbar(!showNavbar);
   }
 
+  function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setShowNavbar(false);
+    }
+  }
+
   return (
     <section>
       {/* Navbar */}
@@ -67,14 +76,14 @@ export default function Home() {
         <div className="mx-auto sm:px-6 lg:px-8 xl:px-12">
           <div className="flex h-16 items-center justify-between lg:h-[72px]">
             <div className="flex flex-shrink-0 items-center">
-              <a
+              <Link
                 className="flex items-center text-xl font-bold no-underline hover:no-underline"
-                href="/"
+                to="/"
               >
                 <span className="bg-gradient-to-r from-gray-300 via-pink-500 to-purple-500 bg-clip-text text-transparent">
                   H A M Z A &nbsp; K I R Y
                 </span>
-              </a>
+              </Link>
             </div>
 
             <div
@@ -87,33 +96,37 @@ export default function Home() {
               flex items-center justify-around transition-all ease-in-out md:justify-center md:gap-8 md:transition-none
               lg:relative lg:z-0 lg:h-min lg:w-min lg:translate-y-0 lg:border-none lg:bg-transparent lg:px-10 lg:backdrop-blur-0 lg:flex lg:justify-center lg:space-x-10 xl:space-x-14`}
             >
-              <a
-                href="/Portfolio-Hamza-Kiry/#/"
+              <Link
+                to="/"
                 className="text-base font-medium text-gray-300 hover:text-white"
+                onClick={() => setShowNavbar(false)}
               >
                 Home
-              </a>
+              </Link>
 
-              <a
-                href="/Portfolio-Hamza-Kiry/#/projects"
+              <Link
+                to="/projects"
                 className="text-base font-medium text-gray-300 hover:text-white"
+                onClick={() => setShowNavbar(false)}
               >
                 Projects
-              </a>
+              </Link>
 
-              <a
-                href="/Portfolio-Hamza-Kiry/#/about"
+              <button
+                type="button"
+                onClick={() => scrollToSection("about")}
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 About
-              </a>
+              </button>
 
-              <a
-                href="/Portfolio-Hamza-Kiry/#/contact"
+              <button
+                type="button"
+                onClick={() => scrollToSection("contact")}
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 Contact
-              </a>
+              </button>
             </div>
 
             <div className="flex items-center justify-end space-x-5">
@@ -209,7 +222,6 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
-          {/* Card 1 */}
           <div className="max-w-xs rounded-md bg-black p-4 text-center shadow-md">
             <h3 className="mt-4 mb-2 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text text-lg font-bold text-transparent md:text-2xl">
               ABOUT ME
@@ -223,7 +235,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 2 */}
           <div className="relative max-w-xs overflow-x-hidden rounded-md bg-black p-4 text-center shadow-md">
             <h3 className="mt-4 mb-2 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text text-lg font-bold text-transparent md:text-2xl">
               PROJECTS
@@ -238,7 +249,6 @@ export default function Home() {
             <Meteors number={10} />
           </div>
 
-          {/* Card 3 */}
           <div className="max-w-xs rounded-md bg-black p-4 text-center shadow-md">
             <h3 className="mt-4 mb-2 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text text-lg font-bold text-transparent md:text-2xl">
               CONTACT
@@ -295,13 +305,22 @@ export default function Home() {
                     <ul>
                       {section.child.map((link, linkIndex) => (
                         <li key={linkIndex} className="pt-2">
-                          <a
-                            href={link.link}
-                            className="hover:text-gray-300"
-                            rel="noopener noreferrer"
-                          >
-                            {link.name}
-                          </a>
+                          {link.type === "route" ? (
+                            <Link
+                              to={link.link}
+                              className="hover:text-gray-300"
+                            >
+                              {link.name}
+                            </Link>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => scrollToSection(link.link)}
+                              className="hover:text-gray-300"
+                            >
+                              {link.name}
+                            </button>
+                          )}
                         </li>
                       ))}
                     </ul>

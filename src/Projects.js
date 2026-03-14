@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { products } from "./profileData/projects";
 import { SiGithub, SiLinkedin, SiGmail } from "react-icons/si";
 
@@ -10,6 +11,18 @@ export default function Projects() {
   }
 
   const getCurrentYear = () => new Date().getFullYear();
+
+  function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setShowNavbar(false);
+    }
+  }
+
+  function goToHome() {
+    window.location.href = "/Portfolio-Hamza-Kiry/#/";
+  }
 
   const footerLinks = [
     {
@@ -36,9 +49,9 @@ export default function Projects() {
     {
       title: "Navigation",
       child: [
-        { name: "Home", link: "/" },
-        { name: "Projects", link: "/projects" },
-        { name: "Contact", link: "#contact" },
+        { name: "Home", type: "route", link: "/" },
+        { name: "Projects", type: "route", link: "/projects" },
+        { name: "Contact", type: "scroll", link: "contact" },
       ],
     },
   ];
@@ -59,14 +72,14 @@ export default function Projects() {
         <div className="mx-auto sm:px-6 lg:px-8 xl:px-12">
           <div className="flex h-16 items-center justify-between lg:h-[72px]">
             <div className="flex flex-shrink-0 items-center">
-              <a
+              <Link
                 className="flex items-center text-xl font-bold no-underline hover:no-underline"
-                href="/"
+                to="/"
               >
                 <span className="bg-gradient-to-r from-gray-300 via-pink-500 to-purple-500 bg-clip-text text-transparent">
                   H A M Z A &nbsp; K I R Y
                 </span>
-              </a>
+              </Link>
             </div>
 
             <div
@@ -79,33 +92,37 @@ export default function Projects() {
               flex items-center justify-around transition-all ease-in-out md:justify-center md:gap-8 md:transition-none
               lg:relative lg:z-0 lg:h-min lg:w-min lg:translate-y-0 lg:border-none lg:bg-transparent lg:px-10 lg:backdrop-blur-0 lg:flex lg:justify-center lg:space-x-10 xl:space-x-14`}
             >
-              <a
-                href="/Portfolio-Hamza-Kiry/#/"
+              <Link
+                to="/"
                 className="text-base font-medium text-gray-300 hover:text-white"
+                onClick={() => setShowNavbar(false)}
               >
                 Home
-              </a>
+              </Link>
 
-              <a
-                href="/Portfolio-Hamza-Kiry/#/projects"
+              <Link
+                to="/projects"
                 className="text-base font-medium text-white"
+                onClick={() => setShowNavbar(false)}
               >
                 Projects
-              </a>
+              </Link>
 
-              <a
-                href="/Portfolio-Hamza-Kiry/#/about"
+              <button
+                type="button"
+                onClick={goToHome}
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 About
-              </a>
+              </button>
 
-              <a
-                href="/Portfolio-Hamza-Kiry/#/#contact"
+              <button
+                type="button"
+                onClick={() => scrollToSection("contact")}
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 Contact
-              </a>
+              </button>
             </div>
 
             <div className="flex items-center justify-end space-x-5">
@@ -262,13 +279,22 @@ export default function Projects() {
                     <ul>
                       {section.child.map((link, linkIndex) => (
                         <li key={linkIndex} className="pt-2">
-                          <a
-                            href={link.link}
-                            className="hover:text-gray-300"
-                            rel="noopener noreferrer"
-                          >
-                            {link.name}
-                          </a>
+                          {link.type === "route" ? (
+                            <Link
+                              to={link.link}
+                              className="hover:text-gray-300"
+                            >
+                              {link.name}
+                            </Link>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => scrollToSection(link.link)}
+                              className="hover:text-gray-300"
+                            >
+                              {link.name}
+                            </button>
+                          )}
                         </li>
                       ))}
                     </ul>
