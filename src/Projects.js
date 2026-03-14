@@ -1,18 +1,15 @@
-"use client";
-
 import { useState } from "react";
-import { HeroParallax } from "./components/ui/hero-parallax";
-import { Meteors } from "./components/ui/meteors";
-import { SiGithub, SiLinkedin, SiGmail } from "react-icons/si";
 import { products } from "./profileData/projects";
+import { SiGithub, SiLinkedin, SiGmail } from "react-icons/si";
 
-import Card1 from "./images/Card_1.png";
-import Card2 from "./images/Card2.jpeg";
-import Card3 from "./images/Card_3.png";
-
-export default function Home() {
-  const getCurrentYear = () => new Date().getFullYear();
+export default function Projects() {
   const [showNavbar, setShowNavbar] = useState(false);
+
+  function handleShowNavbar() {
+    setShowNavbar(!showNavbar);
+  }
+
+  const getCurrentYear = () => new Date().getFullYear();
 
   const footerLinks = [
     {
@@ -56,13 +53,8 @@ export default function Home() {
     },
   ];
 
-  function handleShowNavbar() {
-    setShowNavbar(!showNavbar);
-  }
-
   return (
-    <section>
-      {/* Navbar */}
+    <section className="min-h-screen bg-black text-white">
       <header className="fixed top-0 right-0 left-0 z-50 border-b border-gray-500 bg-black backdrop-blur-md">
         <div className="mx-auto sm:px-6 lg:px-8 xl:px-12">
           <div className="flex h-16 items-center justify-between lg:h-[72px]">
@@ -96,13 +88,13 @@ export default function Home() {
 
               <a
                 href="/projects"
-                className="text-base font-medium text-gray-300 hover:text-white"
+                className="text-base font-medium text-white"
               >
                 Projects
               </a>
 
               <a
-                href="#about"
+                href="/#about"
                 className="text-base font-medium text-gray-300 hover:text-white"
               >
                 About
@@ -187,74 +179,49 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero */}
-      <HeroParallax products={products} />
-
-      {/* About / Features */}
-      <div
-        id="about"
-        className="flex flex-col items-center justify-center bg-white py-8 sm:py-16 lg:py-20 xl:pt-32 xl:pb-44"
-      >
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-black sm:text-4xl xl:text-5xl xl:leading-tight">
-            Building, Learning & Showcasing My Work
-          </h1>
-        </div>
-
-        <div className="text-center">
-          <p className="mb-8 text-base font-normal leading-7 text-gray-600 lg:max-w-md">
-            I am Hamza Kiry, a developer passionate about creating modern, useful,
-            and visually engaging digital experiences.
+      <div className="mx-auto max-w-7xl px-6 pt-32 pb-16">
+        <div className="mb-12 text-center">
+          <h1 className="text-4xl font-bold md:text-6xl">My Projects</h1>
+          <p className="mx-auto mt-4 max-w-2xl text-gray-400">
+            Explore all the projects showcased in my portfolio and click to view
+            each repository.
           </p>
         </div>
 
-        <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
-          {/* Card 1 */}
-          <div className="max-w-xs rounded-md bg-black p-4 text-center shadow-md">
-            <h3 className="mt-4 mb-2 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text text-lg font-bold text-transparent md:text-2xl">
-              ABOUT ME
-            </h3>
-            <p className="p-5 tracking-tighter text-neutral-500">
-              I enjoy building web applications, exploring UI/UX ideas, and turning
-              concepts into real products through clean and practical code.
-            </p>
-            <div className="v ab bb dc bf cf">
-              <img className="zg zc" src={Card1} alt="About Hamza Kiry" />
-            </div>
-          </div>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((project) => (
+            <a
+              key={project.title}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group overflow-hidden rounded-2xl border border-gray-800 bg-neutral-950 shadow-lg transition duration-300 hover:-translate-y-2 hover:border-pink-500"
+            >
+              <div className="overflow-hidden">
+                <img
+                  src={project.thumbnail}
+                  alt={project.title}
+                  className="h-60 w-full object-cover transition duration-300 group-hover:scale-105"
+                />
+              </div>
 
-          {/* Card 2 */}
-          <div className="relative max-w-xs overflow-x-hidden rounded-md bg-black p-4 text-center shadow-md">
-            <h3 className="mt-4 mb-2 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text text-lg font-bold text-transparent md:text-2xl">
-              PROJECTS
-            </h3>
-            <p className="p-5 tracking-tighter text-neutral-500">
-              From portfolio websites to practical apps, I like building projects
-              that combine design, functionality, and real-world usefulness.
-            </p>
-            <div className="v ab bb dc bf cf ih wh">
-              <img className="zg zc" src={Card2} alt="Projects by Hamza Kiry" />
-            </div>
-            <Meteors number={10} />
-          </div>
+              <div className="p-5">
+                <h2 className="text-xl font-semibold text-white">
+                  {project.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-gray-400">
+                  {project.description}
+                </p>
 
-          {/* Card 3 */}
-          <div className="max-w-xs rounded-md bg-black p-4 text-center shadow-md">
-            <h3 className="mt-4 mb-2 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text text-lg font-bold text-transparent md:text-2xl">
-              CONTACT
-            </h3>
-            <p className="p-5 tracking-tighter text-neutral-500">
-              I’m open to collaboration, freelance work, and new opportunities.
-              Feel free to reach out and connect with me.
-            </p>
-            <div className="v ab bb dc bf cf ih wh">
-              <img className="zg zc" src={Card3} alt="Contact Hamza Kiry" />
-            </div>
-          </div>
+                <div className="mt-5 inline-flex items-center rounded-lg border border-pink-500 px-4 py-2 text-sm font-medium text-pink-400 transition hover:bg-pink-500 hover:text-white">
+                  View Project
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
 
-      {/* Footer */}
       <div id="contact" className="border-t border-gray-800 bg-black">
         <div className="mx-auto max-w-screen-xl px-4 pt-8 pb-8 sm:px-6 sm:pt-16 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-4">

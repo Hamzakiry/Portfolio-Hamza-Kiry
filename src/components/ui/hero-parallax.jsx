@@ -1,13 +1,13 @@
 "use client"
 import React from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
-import { Link } from 'react-router-dom';
 
 export const HeroParallax = ({ products }) => {
   const firstRow = products.slice(0, 5)
   const secondRow = products.slice(5, 10)
   const thirdRow = products.slice(10, 15)
   const ref = React.useRef(null)
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -19,32 +19,39 @@ export const HeroParallax = ({ products }) => {
     useTransform(scrollYProgress, [0, 1], [0, 1000]),
     springConfig
   )
+
   const translateXReverse = useSpring(
     useTransform(scrollYProgress, [0, 1], [0, -1000]),
     springConfig
   )
+
   const rotateX = useSpring(
     useTransform(scrollYProgress, [0, 0.2], [15, 0]),
     springConfig
   )
+
   const opacity = useSpring(
     useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
     springConfig
   )
+
   const rotateZ = useSpring(
     useTransform(scrollYProgress, [0, 0.2], [20, 0]),
     springConfig
   )
+
   const translateY = useSpring(
     useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
     springConfig
   )
+
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
+
       <motion.div
         style={{
           rotateX,
@@ -52,10 +59,9 @@ export const HeroParallax = ({ products }) => {
           translateY,
           opacity
         }}
-        className=""
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
-          {firstRow.map(product => (
+        <motion.div className="mb-20 flex flex-row-reverse space-x-reverse space-x-20">
+          {firstRow.map((product) => (
             <ProductCard
               product={product}
               translate={translateX}
@@ -63,8 +69,9 @@ export const HeroParallax = ({ products }) => {
             />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row  mb-20 space-x-20 ">
-          {secondRow.map(product => (
+
+        <motion.div className="mb-20 flex flex-row space-x-20">
+          {secondRow.map((product) => (
             <ProductCard
               product={product}
               translate={translateXReverse}
@@ -72,8 +79,9 @@ export const HeroParallax = ({ products }) => {
             />
           ))}
         </motion.div>
+
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {thirdRow.map(product => (
+          {thirdRow.map((product) => (
             <ProductCard
               product={product}
               translate={translateX}
@@ -88,12 +96,17 @@ export const HeroParallax = ({ products }) => {
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
-      <h1 className="text-2xl md:text-7xl font-bold text-white">
-      Hello👋,Welcome to<br /> HAMZA KIRY portfolios
+    <div className="relative left-0 top-0 mx-auto w-full max-w-7xl px-4 py-20 md:py-40">
+      <h1 className="text-2xl font-bold text-white md:text-7xl">
+        Hello👋, Welcome to
+        <br />
+        HAMZA KIRY portfolios
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 text-white">
-Explore my projects, skills, and creative work. This space showcases my development journey, my applications, and the ideas I bring to life.      </p>
+
+      <p className="mt-8 max-w-2xl text-base text-white md:text-xl">
+        Explore my projects, skills, and creative work. This space showcases my
+        development journey, my applications, and the ideas I bring to life.
+      </p>
     </div>
   )
 }
@@ -101,29 +114,28 @@ Explore my projects, skills, and creative work. This space showcases my developm
 export const ProductCard = ({ product, translate }) => {
   return (
     <motion.div
-      style={{
-        x: translate
-      }}
-      whileHover={{
-        y: -20
-      }}
-      key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      style={{ x: translate }}
+      whileHover={{ y: -20 }}
+      className="group/product relative h-96 w-[30rem] flex-shrink-0"
     >
-      <Link
+      <a
         href={product.link}
-        className="block group-hover/product:shadow-2xl "
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block h-full w-full group-hover/product:shadow-2xl"
       >
         <img
           src={product.thumbnail}
           height="600"
           width="600"
-          className="object-left-top absolute h-[80%] w-full inset-0"
+          className="absolute inset-0 h-[80%] w-full object-cover object-left-top"
           alt={product.title}
         />
-      </Link>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+      </a>
+
+      <div className="pointer-events-none absolute inset-0 h-full w-full bg-black opacity-0 group-hover/product:opacity-80"></div>
+
+      <h2 className="absolute bottom-4 left-4 text-white opacity-0 group-hover/product:opacity-100">
         {product.title}
       </h2>
     </motion.div>

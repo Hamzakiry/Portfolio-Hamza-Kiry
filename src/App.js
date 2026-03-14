@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, HashRouter  as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
+import Projects from "./Projects";
 import CardList from "./components/CardList";
 import CardModal from "./components/CardModal";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-
 
 const App = () => {
   const [cards, setCards] = useState([]);
@@ -21,7 +21,6 @@ const App = () => {
       require.context("./profileData", false, /\.json$/)
     );
 
-    // Sort cards alphabetically by name
     cardData = cardData.sort((a, b) => {
       const nameA = a.name.toUpperCase();
       const nameB = b.name.toUpperCase();
@@ -52,6 +51,7 @@ const App = () => {
         card.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
+
     setFilteredCards(filteredData);
   };
 
@@ -59,8 +59,10 @@ const App = () => {
     <Router>
       <div className="app">
         <Routes>
-          
           <Route path="/" element={<Home />} />
+
+          <Route path="/projects" element={<Projects />} />
+
           <Route
             path="/portfolios"
             element={
