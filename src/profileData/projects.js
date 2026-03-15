@@ -22,10 +22,10 @@ export const products = [
     description: "An e-commerce application focused on online shopping features.",
   },
   {
-    title: "GitHub Profile",
+    title: "Flight-Radar-Analytics-Dashboard",
     link: "https://github.com/Hamzakiry/Flight-Radar-Analytics-Dashboard",
     thumbnail: Pro3,
-    description: "My GitHub profile with repositories and development work.",
+    description: "Flight Radar Analytics Dashboard is a data analysis and visualization project that collects real-time flight data using the FlightRadar24 API and transforms it into meaningful insights through interactive dashboards and analytics.The goal of this project is to explore aviation data, analyze airline activity, and visualize global flight traffic patterns.This project was developed as part of a data engineering and analytics learning portfolio.",
   },
   {
     title: "Sneaks",
