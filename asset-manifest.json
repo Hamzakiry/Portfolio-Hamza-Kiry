@@ -1,11 +1,13 @@
 {
   "files": {
     "main.css": "/Portfolio-Hamza-Kiry/static/css/main.dce450f0.css",
-    "main.js": "/Portfolio-Hamza-Kiry/static/js/main.ee8dea20.js",
+    "main.js": "/Portfolio-Hamza-Kiry/static/js/main.6a2e63c5.js",
     "static/js/787.8517b185.chunk.js": "/Portfolio-Hamza-Kiry/static/js/787.8517b185.chunk.js",
     "static/media/Pro9.png": "/Portfolio-Hamza-Kiry/static/media/Pro9.f10fa1b89936a3a16ab5.png",
     "static/media/Card_3.png": "/Portfolio-Hamza-Kiry/static/media/Card_3.7f56a64c3ab6ad659ac5.png",
     "static/media/Pro1.png": "/Portfolio-Hamza-Kiry/static/media/Pro1.254a237e3cb27a5174c5.png",
+    "static/media/Pro5.png": "/Portfolio-Hamza-Kiry/static/media/Pro5.ee54636ea1082031e3aa.png",
+    "static/media/Pro6.png": "/Portfolio-Hamza-Kiry/static/media/Pro6.ca475c2941a189aa3eae.png",
     "static/media/Pro2.png": "/Portfolio-Hamza-Kiry/static/media/Pro2.758323ac9ed4ab031b8e.png",
     "static/media/Pro7.png": "/Portfolio-Hamza-Kiry/static/media/Pro7.e4dec6c73944b13ff7f3.png",
     "static/media/Pro4.png": "/Portfolio-Hamza-Kiry/static/media/Pro4.46a4a6a8c9fd1f617a17.png",
@@ -15,11 +17,11 @@
     "static/media/Pro3.jpg": "/Portfolio-Hamza-Kiry/static/media/Pro3.e809f4dded1c7a119451.jpg",
     "index.html": "/Portfolio-Hamza-Kiry/index.html",
     "main.dce450f0.css.map": "/Portfolio-Hamza-Kiry/static/css/main.dce450f0.css.map",
-    "main.ee8dea20.js.map": "/Portfolio-Hamza-Kiry/static/js/main.ee8dea20.js.map",
+    "main.6a2e63c5.js.map": "/Portfolio-Hamza-Kiry/static/js/main.6a2e63c5.js.map",
     "787.8517b185.chunk.js.map": "/Portfolio-Hamza-Kiry/static/js/787.8517b185.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dce450f0.css",
-    "static/js/main.ee8dea20.js"
+    "static/js/main.6a2e63c5.js"
   ]
 }
