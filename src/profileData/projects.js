@@ -7,8 +7,16 @@ import Pro6 from "../images/Pro6.png";
 import Pro7 from "../images/Pro7.png";
 import Pro8 from "../images/Pro8.png";
 import Pro9 from "../images/Pro9.png";
+import Pro10 from "../images/Pro10.png";
 
 export const products = [
+  {
+    title: "Intelligent Quotation with Odoo 17 & Local AI",
+    link: "https://github.com/Hamzakiry/S1_Docker_Setup_et_Audit_Donnees",
+    thumbnail: Pro10,
+    description:
+      "Assistant engineer internship project covering the complete CRM workflow: AI-assisted needs analysis, cost estimation, quotation, manufacturing, delivery, and invoicing with Odoo 17, FastAPI, Docker, PostgreSQL, and Ollama.",
+  },
   {
     title: "Python Invaders Game",
     link: "https://github.com/Hamzakiry/Python-Invaders-Game-main",
