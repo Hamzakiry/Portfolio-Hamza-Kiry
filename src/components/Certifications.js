@@ -1,8 +1,8 @@
 import { Award, ArrowUpRight, CheckCircle2, Clock3 } from "lucide-react";
 
 const sapAchievements = [
-  { title: "Exploring SAP Business AI Platform Architecture", status: "Recently earned", link: "https://learning.sap.com/courses/exploring-sap-business-ai-platform-architecture" },
-  { title: "Introduction to SAP Cloud Application Programming Model", status: "Recently earned", link: "https://learning.sap.com/courses/introduction-to-sap-cloud-application-programming-model" },
+  { title: "Exploring SAP Business AI Platform Architecture", status: "October 2026", link: "https://learning.sap.com/courses/exploring-sap-business-ai-platform-architecture" },
+  { title: "Introduction to SAP Cloud Application Programming Model", status: "October 2026", link: "https://learning.sap.com/courses/introduction-to-sap-cloud-application-programming-model" },
   { title: "Introducing SAP Business AI Platform", status: "August 2026" },
   { title: "SAP Certified — Positioning SAP Business AI Platform", status: "In progress", pending: true },
 ];
