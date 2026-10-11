@@ -27,6 +27,7 @@ const Navbar = ({ searchTerm, handleSearchChange }) => {
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Search by Name"
+          aria-label="Search portfolios by name"
         />
 
         <button onClick={navigateToGitHub} className="text-gray-300">

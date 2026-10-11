@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, HashRouter as Router, Routes } from "react-router-dom";import "./App.css";
 import Home from "./Home";
+import "./portfolio.css";
 import Projects from "./Projects";
 import CardList from "./components/CardList";
 import CardModal from "./components/CardModal";
@@ -9,6 +10,26 @@ import Navbar from "./components/Navbar";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const App = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    const watchCards = () => document.querySelectorAll(".about-card, .project-card").forEach(card => {
+      if (!card.classList.contains("revealed")) {
+        card.classList.add("reveal-card");
+        observer.observe(card);
+      }
+    });
+    watchCards();
+    const changes = new MutationObserver(watchCards);
+    changes.observe(document.getElementById("root"), { childList: true, subtree: true });
+    return () => { observer.disconnect(); changes.disconnect(); };
+  }, []);
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");

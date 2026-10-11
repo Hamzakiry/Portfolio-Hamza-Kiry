@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   SiGithub,
   SiGmail,
@@ -7,6 +8,30 @@ import {
 } from "react-icons/si";
 
 const CardModal = ({ card, onClose }) => {
+  const dialog = useRef(null);
+  useEffect(() => {
+    if (!card) return;
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog.current?.querySelector("button")?.focus();
+    const handleKey = event => {
+      if (event.key === "Escape") onClose();
+      if (event.key === "Tab") {
+        const focusable = dialog.current?.querySelectorAll("a[href], button");
+        if (!focusable?.length) return;
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKey);
+      previousFocus?.focus();
+    };
+  }, [card, onClose]);
   if (!card) {
     return null;
   }
@@ -24,12 +49,12 @@ const CardModal = ({ card, onClose }) => {
   } = card;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-[98]">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-[110]">
       <div
         className="fixed top-0 left-0 w-full h-full modal-overlay backdrop-blur bg-white/10"
         onClick={onClose}
       ></div>
-      <div className="relative z-10 flex flex-col items-center justify-center p-8 text-white bg-black rounded-lg modal-content md:w-2/3 lg:w-1/2 md:flex-row  w-[90%] ">
+      <div ref={dialog} role="dialog" aria-modal="true" aria-label={`${name}'s portfolio`} className="relative z-10 flex flex-col items-center justify-center p-8 text-white bg-black rounded-lg modal-content md:w-2/3 lg:w-1/2 md:flex-row  w-[90%] ">
         <div className="flex items-center justify-center mb-4 md:mr-5 md:mb-0">
           <img
             src={`https://github.com/${username}.png`}
@@ -43,6 +68,7 @@ const CardModal = ({ card, onClose }) => {
           <button
             className="absolute font-bold text-gray-300 x-close top-4 right-5 hover:text-white"
             onClick={onClose}
+            aria-label="Close portfolio details"
           >
             <span className="X"></span>
             <span className="Y"></span>

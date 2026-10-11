@@ -1,143 +1,39 @@
-"use client"
-import React from "react"
-import { motion, useScroll, useTransform, useSpring } from "framer-motion"
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Download, MapPin } from "lucide-react";
+import portrait from "../../images/hamza-kiry.webp";
 
-export const HeroParallax = ({ products }) => {
-  const firstRow = products.slice(0, 5)
-  const secondRow = products.slice(5, 10)
-  const thirdRow = products.slice(10, 15)
-  const ref = React.useRef(null)
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  })
-
-  const springConfig = { stiffness: 300, damping: 30, bounce: 100 }
-
-  const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 1000]),
-    springConfig
-  )
-
-  const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -1000]),
-    springConfig
-  )
-
-  const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
-    springConfig
-  )
-
-  const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
-    springConfig
-  )
-
-  const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
-    springConfig
-  )
-
-  const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
-    springConfig
-  )
-
-  return (
-    <div
-      ref={ref}
-      className="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
-    >
-      <Header />
-
-      <motion.div
-        style={{
-          rotateX,
-          rotateZ,
-          translateY,
-          opacity
-        }}
-      >
-        <motion.div className="mb-20 flex flex-row-reverse space-x-reverse space-x-20">
-          {firstRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateX}
-              key={product.title}
-            />
-          ))}
-        </motion.div>
-
-        <motion.div className="mb-20 flex flex-row space-x-20">
-          {secondRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateXReverse}
-              key={product.title}
-            />
-          ))}
-        </motion.div>
-
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {thirdRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateX}
-              key={product.title}
-            />
-          ))}
-        </motion.div>
-      </motion.div>
+export const HeroParallax = ({ products, children }) => {
+  const ref = React.useRef(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const forward = useSpring(useTransform(scrollYProgress, [0, 1], [-45, 65]), { stiffness: 90, damping: 30 });
+  const reverse = useSpring(useTransform(scrollYProgress, [0, 1], [45, -65]), { stiffness: 90, damping: 30 });
+  return <section ref={ref} className="hero-section">
+    <Header/>
+    {children}
+    <div className="showcase-heading"><span className="eyebrow">A GLIMPSE OF MY WORK</span><Link to="/projects">Explore all projects <ArrowUpRight size={16}/></Link></div>
+    <div className="project-showcase">
+      {[products.slice(0, 5), products.slice(5, 10)].map((row, index) => <motion.div key={index} className="showcase-row" style={{ x: reduced ? 0 : index === 0 ? forward : reverse }}>
+        {row.map(product => <ProductCard key={product.title} product={product}/>)}
+      </motion.div>)}
     </div>
-  )
-}
+  </section>;
+};
 
-export const Header = () => {
-  return (
-    <div className="relative left-0 top-0 mx-auto w-full max-w-7xl px-4 py-20 md:py-40">
-      <h1 className="text-2xl font-bold text-white md:text-7xl">
-        Hello👋, Welcome to
-        <br />
-        HAMZA KIRY portfolios
-      </h1>
+export const Header = () => <div className="hero-intro">
+  <div className="hero-copy"><span className="eyebrow"><span className="status-dot"/> ENGINEERING STUDENT / AI & BIG DATA</span>
+    <h1>Hamza Kiry<span>.</span><br/><span className="hero-specialty">AI. Big Data. SAP.</span></h1>
+    <p>Final-year engineering student focused on artificial intelligence, Big Data and intelligent enterprise solutions. Exploring SAP BTP and SAP Business AI Platform through an AI and software engineering approach.</p>
+    <div className="hero-focus" aria-label="Areas of focus"><span>Artificial Intelligence</span><span>Big Data</span><span>SAP BTP</span><span>SAP Business AI Platform</span></div>
+    <div className="hero-actions"><Link to="/projects" className="primary-button">Explore my projects <ArrowUpRight size={18}/></Link><a className="secondary-button" href="mailto:hamza.kiry2@gmail.com">Let’s connect <ArrowUpRight size={18}/></a></div>
+    <div className="cv-downloads"><span>DOWNLOAD MY CV</span><a href={`${process.env.PUBLIC_URL}/cv/Hamza-Kiry-CV-FR.pdf`} download="Hamza-Kiry-CV-FR.pdf" lang="fr"><Download size={16}/> CV français <span>PDF</span></a><a href={`${process.env.PUBLIC_URL}/cv/Hamza-Kiry-CV-EN.pdf`} download="Hamza-Kiry-CV-EN.pdf" lang="en"><Download size={16}/> English CV <span>PDF</span></a></div>
+  </div>
+  <div className="hero-profile"><img className="hero-portrait" src={portrait} width="864" height="1296" fetchpriority="high" alt="Hamza Kiry"/><div className="hero-profile-details"><p>AI & Big Data<br/><span>Final-year engineering student</span></p><span className="profile-location"><MapPin size={14}/> Agadir, Morocco</span><a href="tel:+212699507431" className="profile-phone">+212 6 99 50 74 31</a><span className="note-bottom">AVAILABLE MARCH 2027 <ArrowDown size={17}/></span></div></div>
+</div>;
 
-      <p className="mt-8 max-w-2xl text-base text-white md:text-xl">
-        Explore my projects, skills, and creative work. This space showcases my
-        development journey, my applications, and the ideas I bring to life.
-      </p>
-    </div>
-  )
-}
-
-export const ProductCard = ({ product, translate }) => {
-  return (
-    <motion.div
-      style={{ x: translate }}
-      whileHover={{ y: -20 }}
-      className="group/product relative h-96 w-[30rem] flex-shrink-0"
-    >
-      <a
-        href={product.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block h-full w-full group-hover/product:shadow-2xl"
-      >
-        <img
-          src={product.thumbnail}
-          height="600"
-          width="600"
-          className="absolute inset-0 h-[80%] w-full object-cover object-left-top"
-          alt={product.title}
-        />
-      </a>
-
-      <div className="pointer-events-none absolute inset-0 h-full w-full bg-black opacity-0 group-hover/product:opacity-80"></div>
-
-      <h2 className="absolute bottom-4 left-4 text-white opacity-0 group-hover/product:opacity-100">
-        {product.title}
-      </h2>
-    </motion.div>
-  )
-}
+export const ProductCard = ({ product }) => <a href={product.link} target="_blank" rel="noopener noreferrer" className="showcase-card">
+  <div className="showcase-image"><img src={product.thumbnail} width="600" height="400" loading="lazy" decoding="async" alt={product.title}/></div>
+  <div className="showcase-caption"><h2>{product.title}</h2><ArrowUpRight size={18}/></div>
+</a>;
