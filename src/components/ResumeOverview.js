@@ -1,7 +1,7 @@
 import { Briefcase, GraduationCap, Code2, Languages } from "lucide-react";
 
 const skills = [
-  ["SAP & enterprise AI", "SAP Business AI Platform / SAP BTP fundamentals · SAP certification in progress"],
+  ["SAP & enterprise AI", "SAP Business AI Platform architecture · SAP BTP fundamentals · SAP CAP introduction"],
   ["AI & Big Data", "Pandas, NumPy, TensorFlow, NLP, RAG, Spark, Hadoop"],
   ["Languages", "Python, C/C++, Java, JavaScript, PHP, Dart"],
   ["Web & ERP", "Odoo 17, FastAPI, OWL, Chart.js, HTML/CSS"],
@@ -10,7 +10,7 @@ const skills = [
 
 export default function ResumeOverview() {
   return <section className="resume-section" aria-labelledby="resume-heading">
-    <div className="resume-heading"><span className="eyebrow">PROFILE / AT A GLANCE</span><h2 id="resume-heading">AI, Big Data & intelligent enterprise.</h2><p>Final-year engineering student in Artificial Intelligence and Big Data at Agadir Polytechnic School. My focus combines machine learning, data analytics and enterprise AI, with foundations in SAP BTP and SAP Business AI Platform. Software engineering supports the reliable, explainable and deployable solutions I build.</p><div className="profile-facts"><span>Agadir, Morocco</span><span>Seeking a 6-month final-year internship in France</span><span>Available March 2027</span></div></div>
+    <div className="resume-heading"><span className="eyebrow">PROFILE / AT A GLANCE</span><h2 id="resume-heading">AI, Big Data & intelligent enterprise.</h2><p>Final-year engineering student in Artificial Intelligence and Big Data at Agadir Polytechnic School. My studies and projects combine machine learning, data analytics and enterprise AI, with knowledge of SAP Business AI Platform architecture and SAP Cloud Application Programming Model.</p><div className="profile-facts"><span>Agadir, Morocco</span><span>Seeking a 6-month final-year internship in France</span><span>Available March 2027</span></div></div>
     <div className="resume-grid">
       <article className="resume-card"><h3><Briefcase size={20}/> Experience</h3><ol className="resume-timeline">
         <li><h4>MEDIA TELECOM</h4><span>Engineering Assistant Intern · Agadir</span><p>ERP and AI solution addressing business needs, using Odoo 17 and decision support.</p></li>

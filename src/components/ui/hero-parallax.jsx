@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Download, MapPin } from "lucide-react";
-import portrait from "../../images/hamza-kiry.webp";
+import portrait from "../../images/hamza-kiry-studio.webp";
 
 export const HeroParallax = ({ products, children }) => {
   const ref = React.useRef(null);
@@ -25,7 +25,7 @@ export const HeroParallax = ({ products, children }) => {
 export const Header = () => <div className="hero-intro">
   <div className="hero-copy"><span className="eyebrow"><span className="status-dot"/> ENGINEERING STUDENT / AI & BIG DATA</span>
     <h1>Hamza Kiry<span>.</span><br/><span className="hero-specialty">AI. Big Data. SAP.</span></h1>
-    <p>Final-year engineering student focused on artificial intelligence, Big Data and intelligent enterprise solutions. Exploring SAP BTP and SAP Business AI Platform through an AI and software engineering approach.</p>
+    <p>Final-year engineering student in Artificial Intelligence and Big Data at Agadir Polytechnic School. Building AI and data solutions while developing skills in SAP BTP, SAP Business AI Platform and SAP CAP.</p>
     <div className="hero-focus" aria-label="Areas of focus"><span>Artificial Intelligence</span><span>Big Data</span><span>SAP BTP</span><span>SAP Business AI Platform</span></div>
     <div className="hero-actions"><Link to="/projects" className="primary-button">Explore my projects <ArrowUpRight size={18}/></Link><a className="secondary-button" href="mailto:hamza.kiry2@gmail.com">Let’s connect <ArrowUpRight size={18}/></a></div>
     <div className="cv-downloads"><span>DOWNLOAD MY CV</span><a href={`${process.env.PUBLIC_URL}/cv/Hamza-Kiry-CV-FR.pdf`} download="Hamza-Kiry-CV-FR.pdf" lang="fr"><Download size={16}/> CV français <span>PDF</span></a><a href={`${process.env.PUBLIC_URL}/cv/Hamza-Kiry-CV-EN.pdf`} download="Hamza-Kiry-CV-EN.pdf" lang="en"><Download size={16}/> English CV <span>PDF</span></a></div>

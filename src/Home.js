@@ -3,13 +3,14 @@ import { products } from "./profileData/projects";
 import PortfolioNav from "./components/PortfolioNav";
 import PortfolioFooter from "./components/PortfolioFooter";
 import ResumeOverview from "./components/ResumeOverview";
+import Certifications from "./components/Certifications";
+import { ProjectsVisual, ContactVisual } from "./components/AboutVisuals";
 import Card1 from "./images/Card_1.webp";
-import Card2 from "./images/Card2.webp";
-import Card3 from "./images/Card_3.webp";
 
 export default function Home() {
   return <div className="portfolio-site"><PortfolioNav/><main id="main-content" tabIndex={-1}>
     <HeroParallax products={products}><ResumeOverview/></HeroParallax>
+    <Certifications/>
       {/* About / Features */}
       <div
         id="about"
@@ -24,7 +25,7 @@ export default function Home() {
         <div className="text-center">
           <p className="mb-8 text-base font-normal leading-7 text-gray-600 lg:max-w-md">
             I am Hamza Kiry, a final-year AI & Big Data engineering student,
-            focused on intelligent systems, data insights and SAP enterprise AI.
+            studying intelligent systems, data analytics and SAP enterprise AI.
           </p>
         </div>
 
@@ -52,7 +53,7 @@ export default function Home() {
               integration, my projects connect data with practical business needs.
             </p>
             <div className="v ab bb dc bf cf ih wh">
-              <img loading="lazy" decoding="async" className="about-image" src={Card2} alt="Projects by Hamza Kiry" />
+              <ProjectsVisual/>
             </div>
 
           </div>
@@ -66,7 +67,7 @@ export default function Home() {
               Feel free to reach out and connect with me.
             </p>
             <div className="v ab bb dc bf cf ih wh">
-              <img loading="lazy" decoding="async" className="about-image" src={Card3} alt="Contact Hamza Kiry" />
+              <ContactVisual/>
             </div>
           </div>
         </div>
