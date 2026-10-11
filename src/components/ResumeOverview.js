@@ -1,3 +1,4 @@
+import Certifications from "./Certifications";
 import { Briefcase, GraduationCap, Code2, Languages } from "lucide-react";
 
 const skills = [
@@ -23,6 +24,7 @@ export default function ResumeOverview() {
         <li><span className="resume-date">2021 — 2022</span><h4>Akenssous · Essaouira</h4><p>Baccalaureate in Physical Sciences · Mention Bien</p></li>
       </ol></article>
       <article className="resume-card resume-skills"><h3><Code2 size={20}/> Technical toolkit</h3><div className="skill-groups">{skills.map(([label, value]) => <div key={label}><h4>{label}</h4><p>{value}</p></div>)}</div><div className="resume-languages"><Languages size={18}/><span>French · DELF B2</span><span>English · B2 ALTISSIA</span></div><p className="soft-skills">Rigor · Autonomy · Analytical thinking · Teamwork</p></article>
+      <Certifications/>
     </div>
   </section>;
 }

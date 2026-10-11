@@ -3,14 +3,12 @@ import { products } from "./profileData/projects";
 import PortfolioNav from "./components/PortfolioNav";
 import PortfolioFooter from "./components/PortfolioFooter";
 import ResumeOverview from "./components/ResumeOverview";
-import Certifications from "./components/Certifications";
 import { ProjectsVisual, ContactVisual } from "./components/AboutVisuals";
 import Card1 from "./images/Card_1.webp";
 
 export default function Home() {
   return <div className="portfolio-site"><PortfolioNav/><main id="main-content" tabIndex={-1}>
     <HeroParallax products={products}><ResumeOverview/></HeroParallax>
-    <Certifications/>
       {/* About / Features */}
       <div
         id="about"

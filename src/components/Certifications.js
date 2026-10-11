@@ -17,14 +17,12 @@ const otherAchievements = [
 ];
 
 export default function Certifications() {
-  return <section className="certifications-section" aria-labelledby="certifications-heading">
-    <span className="eyebrow">CONTINUOUS LEARNING / CERTIFICATIONS</span>
-    <div className="certifications-heading"><h2 id="certifications-heading">Building knowledge.<br/><span className="accent">Expanding possibilities.</span></h2><p>Certifications and learning achievements in SAP, artificial intelligence and data engineering.</p></div>
-    <div className="certification-grid">{sapAchievements.map(item => <article className="certification-card" key={item.title}>
-      <div className="certification-meta"><span className="certification-issuer"><Award size={17}/> SAP</span><span className={item.pending ? "certification-pending" : "certification-earned"}>{item.pending ? <Clock3 size={13}/> : <CheckCircle2 size={13}/>}{item.status}</span></div>
-      <h3>{item.title}</h3>
-      {item.link && <a href={item.link} target="_blank" rel="noreferrer" aria-label={`Course details: ${item.title}`}>Course details <ArrowUpRight size={15}/></a>}
-    </article>)}</div>
-    <details className="other-certifications"><summary>Other certifications <span>{otherAchievements.length} achievements · AI, Big Data & software engineering</span></summary><ul>{otherAchievements.map(([title,issuer,date]) => <li key={title}><Award size={18}/><div><h3>{title}</h3><p>{issuer} · {date}</p></div><CheckCircle2 size={16}/></li>)}</ul></details>
-  </section>;
+  return <article className="resume-card resume-certifications">
+    <h3><Award size={20}/> Certifications</h3>
+    <ul className="certificate-list">{sapAchievements.map(item => <li key={item.title}>
+      <h4>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{item.title} <ArrowUpRight size={13}/></a> : item.title}</h4>
+      <p className={item.pending ? "certification-pending" : "certification-earned"}>{item.pending ? <Clock3 size={13}/> : <CheckCircle2 size={13}/>} SAP · {item.status}</p>
+    </li>)}</ul>
+    <details className="other-certifications"><summary>Other certifications ({otherAchievements.length})</summary><ul className="certificate-list">{otherAchievements.map(([title,issuer,date]) => <li key={title}><h4>{title}</h4><p>{issuer} · {date}</p></li>)}</ul></details>
+  </article>;
 }
