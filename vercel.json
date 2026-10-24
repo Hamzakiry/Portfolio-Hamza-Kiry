@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "create-react-app",
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "env": {
+    "PUBLIC_URL": "/",
+    "PORTFOLIO_SITE_URL": "https://hamzakiry-portfolio.vercel.app/"
+  }
+}
