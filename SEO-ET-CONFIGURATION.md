@@ -58,3 +58,14 @@ Voir CERTIFICATES.md pour la correspondance des dix PDF. Deux justificatifs manq
 - https://developers.google.com/search/docs/crawling-indexing/robots/intro
 - https://support.google.com/webmasters/answer/9008080
 - https://support.google.com/webmasters/answer/9012289
+
+## Résultats Search Console observés le 24 octobre 2026
+
+- Propriété validée avec la balise HTML du compte du propriétaire.
+- Test en direct réussi : « Google a accès à cette URL » et « La page peut être indexée ».
+- Données structurées : « Page de profil : 1 élément valide détecté ».
+- L’index Google indiquait avant la demande : « Google ne reconnaît pas cette URL » ; elle n’était donc pas indexée à ce stade.
+- Sitemap envoyé à l’adresse correcte ; le premier état de récupération affichait « Impossible de lire le sitemap », malgré la disponibilité HTTP 200 et un XML valide. Cet état doit être revérifié dans Search Console.
+- Le contact a été recentré sur la candidature à un stage PFE, en français et en anglais.
+
+- Demande d’indexation acceptée : Google confirme « Indexation demandée » et l’ajout de l’URL à sa file d’attente d’exploration prioritaire. Aucune affirmation d’indexation effective ni de classement n’est faite.
