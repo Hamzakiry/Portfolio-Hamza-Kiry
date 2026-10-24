@@ -6,7 +6,7 @@ export default function PortfolioFooter() {
   const { t } = useLanguage();
   return <footer id="contact" className="portfolio-footer">
     <div className="contact-inner">
-      <div><span className="eyebrow"><Text value={"CONTACT / LET’S CONNECT"}/></span><h2><Text value={"Have an idea?"}/><br/><span><Text value={"Let’s build it together."}/></span></h2><p><Text value={"I’m open to collaboration, freelance work, and new opportunities. Feel free to reach out and connect with me."}/></p><Link to="/contact" className="secondary-button footer-form-link"><Text value="Send a message"/><ArrowUpRight size={16}/></Link></div>
+      <div><span className="eyebrow"><Text value={"CONTACT / LET’S CONNECT"}/></span><h2><Text value={"Looking for an AI & Big Data intern?"}/><br/><span><Text value={"Let’s connect."}/></span></h2><p><Text value={"I’m seeking a final-year internship in AI, Big Data or enterprise AI. I’d be happy to discuss an opportunity with your team."}/></p><Link to="/contact" className="secondary-button footer-form-link"><Text value="Send a message"/><ArrowUpRight size={16}/></Link></div>
       <a className="contact-email" href="mailto:hamza.kiry2@gmail.com"><Mail size={24}/><span><Text value={"hamza.kiry2@gmail.com"}/></span><ArrowUpRight size={24}/></a>
     </div>
     <div className="footer-inner">

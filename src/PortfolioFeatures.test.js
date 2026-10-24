@@ -33,7 +33,7 @@ test("empty contact fields do not open the email client", () => {
   mount(<Contact/>);
   fireEvent.click(screen.getByRole("link", { name: "Open email app" }));
   expect(screen.getByRole("status")).toHaveTextContent("Please enter your name and message.");
-  expect(messageEmailLink(" Hamza ", " Bonjour ", "fr")).toContain("subject=Contact%20depuis%20le%20portfolio");
+  expect(messageEmailLink(" Hamza ", " Bonjour ", "fr")).toContain("subject=Contact%20pour%20un%20stage%20PFE");
 });
 test("provides the ten real documents without assigning a different SAP course to missing proof", () => {
   mount(<Certifications/>);

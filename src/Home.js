@@ -44,7 +44,7 @@ export default function Home() {
 
           <div className="about-card">
             <h3 className="mt-4 mb-2 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text text-lg font-bold text-transparent md:text-2xl"><Text value={" CONTACT "}/></h3>
-            <p className="p-5 tracking-tighter text-neutral-500"><Text value={" I’m open to collaboration, freelance work, and new opportunities. Feel free to reach out and connect with me. "}/></p>
+            <p className="p-5 tracking-tighter text-neutral-500"><Text value={" I’m seeking a final-year internship in AI, Big Data or enterprise AI. I’d be happy to discuss an opportunity with your team. "}/></p>
             <div className="v ab bb dc bf cf ih wh">
               <ContactVisual/>
             </div>
