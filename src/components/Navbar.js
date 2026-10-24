@@ -1,7 +1,9 @@
+import { Text, useLanguage, LanguageSwitcher } from "../i18n/Language";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ searchTerm, handleSearchChange }) => {
+  const { t } = useLanguage();
   const navigateToGitHub = () => {
     const githubRepoUrl = "https://github.com/hamzakiry/Awesome-Dev-Portfolios";
     window.open(githubRepoUrl, "_blank");
@@ -11,23 +13,23 @@ const Navbar = ({ searchTerm, handleSearchChange }) => {
     <nav className="navbar">
       <div className="logo-container">
         <Link to="/" className="button">
-          <div className="box">P</div>
-          <div className="box">O</div>
-          <div className="box">R</div>
-          <div className="box">T</div>
-          <div className="box">E</div>
-          <div className="box">F</div>
-          <div className="box">O</div>
+          <div className="box"><Text value={"P"}/></div>
+          <div className="box"><Text value={"O"}/></div>
+          <div className="box"><Text value={"R"}/></div>
+          <div className="box"><Text value={"T"}/></div>
+          <div className="box"><Text value={"E"}/></div>
+          <div className="box"><Text value={"F"}/></div>
+          <div className="box"><Text value={"O"}/></div>
         </Link>
       </div>
 
-      <div className="search-filter">
+      <div className="search-filter"><LanguageSwitcher/>
         <input
           type="text"
           value={searchTerm}
           onChange={handleSearchChange}
-          placeholder="Search by Name"
-          aria-label="Search portfolios by name"
+          placeholder={t("Search by Name")}
+          aria-label={t("Search portfolios by name")}
         />
 
         <button onClick={navigateToGitHub} className="text-gray-300">

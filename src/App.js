@@ -1,3 +1,6 @@
+import Contact from "./Contact";
+import PageMetadata from "./components/PageMetadata";
+import { LanguageProvider } from "./i18n/Language";
 import { useEffect, useState } from "react";
 import { Route, HashRouter as Router, Routes } from "react-router-dom";import "./App.css";
 import Home from "./Home";
@@ -76,12 +79,14 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <LanguageProvider><Router>
+      <PageMetadata/>
       <div className="app">
         <Routes>
           <Route path="/" element={<Home />} />
 
           <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
 
           <Route
             path="/portfolios"
@@ -105,7 +110,7 @@ const App = () => {
           />
         </Routes>
       </div>
-    </Router>
+    </Router></LanguageProvider>
   );
 };
 

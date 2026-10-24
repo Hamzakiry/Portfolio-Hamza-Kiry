@@ -1,0 +1,52 @@
+{
+  "Exploring SAP Business Technology Platform": {
+    "file": "sap-business-technology-platform",
+    "width": 990,
+    "height": 1400
+  },
+  "Introducing SAP Business AI Platform": {
+    "file": "sap-business-ai-platform",
+    "width": 990,
+    "height": 1400
+  },
+  "Machine Learning with PySpark: Customer Churn Analysis": {
+    "file": "pyspark-customer-churn",
+    "width": 1100,
+    "height": 850
+  },
+  "Flutter and Dart: Developing iOS, Android, and Mobile Apps": {
+    "file": "flutter-dart",
+    "width": 1100,
+    "height": 850
+  },
+  "AI For Everyone": {
+    "file": "ai-for-everyone",
+    "width": 1100,
+    "height": 850
+  },
+  "Advanced Java": {
+    "file": "advanced-java",
+    "width": 1100,
+    "height": 850
+  },
+  "Basics of Entrepreneurship: Thinking and Doing": {
+    "file": "entrepreneurship",
+    "width": 1100,
+    "height": 850
+  },
+  "Convolutional Neural Networks": {
+    "file": "convolutional-neural-networks",
+    "width": 1100,
+    "height": 850
+  },
+  "Introduction to Big Data with Spark and Hadoop": {
+    "file": "spark-hadoop",
+    "width": 1100,
+    "height": 850
+  },
+  "100 Days of Code: The Complete Python Pro Bootcamp": {
+    "file": "python-pro-bootcamp",
+    "width": 1100,
+    "height": 819
+  }
+}

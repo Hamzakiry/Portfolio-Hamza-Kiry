@@ -1,3 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
+# GitHub project Pages: crawlers read /robots.txt at the host root.
+# This project-level file documents the intended policy; submit sitemap in Search Console.
 User-agent: *
 Disallow:
+Sitemap: https://hamzakiry.github.io/Portfolio-Hamza-Kiry/sitemap.xml

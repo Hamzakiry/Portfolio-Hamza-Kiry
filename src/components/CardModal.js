@@ -1,3 +1,4 @@
+import { Text, useLanguage } from "../i18n/Language";
 import { useEffect, useRef } from "react";
 import {
   SiGithub,
@@ -8,6 +9,7 @@ import {
 } from "react-icons/si";
 
 const CardModal = ({ card, onClose }) => {
+  const { t } = useLanguage();
   const dialog = useRef(null);
   useEffect(() => {
     if (!card) return;
@@ -68,11 +70,11 @@ const CardModal = ({ card, onClose }) => {
           <button
             className="absolute font-bold text-gray-300 x-close top-4 right-5 hover:text-white"
             onClick={onClose}
-            aria-label="Close portfolio details"
+            aria-label={t("Close portfolio details")}
           >
             <span className="X"></span>
             <span className="Y"></span>
-            <div className="close">X</div>
+            <div className="close"><Text value={"X"}/></div>
           </button>
 
           {/* Name */}
@@ -92,13 +94,10 @@ const CardModal = ({ card, onClose }) => {
 
           {/* Tech stack used */}
           <div className="mb-4">
-            <h3 className="mb-1 text-base font-bold md:text-lg lg:text-xl">
-              Tech Stack Used
-            </h3>
+            <h3 className="mb-1 text-base font-bold md:text-lg lg:text-xl"><Text value={" Tech Stack Used "}/></h3>
             <div className="flex flex-wrap">
               {technologiesUsed.split(", ").map((tech, index) => (
-                <div key={index} className="mb-1 mr-2">
-                  • {tech}
+                <div key={index} className="mb-1 mr-2"><Text value={" • "}/>{tech}
                 </div>
               ))}
             </div>
@@ -106,9 +105,7 @@ const CardModal = ({ card, onClose }) => {
 
           {/* Socials */}
           <div className="mb-5">
-            <h3 className="mb-1 text-base font-bold md:text-lg lg:text-xl">
-              Socials
-            </h3>
+            <h3 className="mb-1 text-base font-bold md:text-lg lg:text-xl"><Text value={" Socials "}/></h3>
             <div className="flex items-center">
               {email !== "-" && (
                 <a
@@ -169,18 +166,14 @@ const CardModal = ({ card, onClose }) => {
 
           {/* External links */}
           <div className="mb-2">
-            <h3 className="mb-1 text-base font-bold md:text-lg lg:text-xl">
-              External Links
-            </h3>
+            <h3 className="mb-1 text-base font-bold md:text-lg lg:text-xl"><Text value={" External Links "}/></h3>
             <div className="flex">
               <a
                 href={livePortfolioLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-2 py-1 mr-2 text-white bg-purple-800 rounded-lg"
-              >
-                Live Portfolio
-              </a>
+              ><Text value={" Live Portfolio "}/></a>
 
               {githubRepoLink !== "-" && (
                 <a
@@ -188,9 +181,7 @@ const CardModal = ({ card, onClose }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-2 py-1 text-black bg-white rounded-lg"
-                >
-                  GitHub Repo
-                </a>
+                ><Text value={" GitHub Repo "}/></a>
               )}
             </div>
           </div>
