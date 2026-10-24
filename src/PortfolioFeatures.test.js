@@ -20,7 +20,7 @@ test("switches project copy and navigation without changing repository links", (
   expect(screen.getByRole("heading", { name: "House Price Prediction using Machine Learning" })).toBeInTheDocument();
 });
 function fillContact() {
-  fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Élodie & Co" } });
+  fireEvent.change(screen.getByRole("textbox", { name: "Email" }), { target: { value: "recruteur@example.org" } });
   fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Bonjour Hamza, une opportunité PFE." } });
 }
 function mockDelivery(response) { global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => response }); }
@@ -32,7 +32,7 @@ test("does not send before provider authorization and email activation", () => {
   expect(global.fetch).not.toHaveBeenCalled();
   expect(screen.queryByRole("link", { name: "Open email app" })).not.toBeInTheDocument();
 });
-test("sends name and message in place without opening a mail client", async () => {
+test("sends email and message in place without opening a mail client", async () => {
   mockDelivery({ success: "true", message: "Email sent successfully" });
   mount(<Contact enabled/>);
   fillContact();
@@ -40,7 +40,7 @@ test("sends name and message in place without opening a mail client", async () =
   await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("accepted your message"));
   const [url, request] = global.fetch.mock.calls[0];
   expect(url).toBe("https://formsubmit.co/ajax/hamza.kiry2@gmail.com");
-  expect(JSON.parse(request.body)).toMatchObject({ name: "Élodie & Co", message: "Bonjour Hamza, une opportunité PFE." });
+  expect(JSON.parse(request.body)).toMatchObject({ email: "recruteur@example.org", _replyto: "recruteur@example.org", message: "Bonjour Hamza, une opportunité PFE." });
   expect(screen.getByLabelText("Message")).toHaveValue("");
 });
 test("activation responses never claim a successful delivery and keep the draft", async () => {
@@ -80,4 +80,22 @@ test("provides the ten real documents without assigning a different SAP course t
   Object.keys(documents).forEach(title => {
     expect(screen.getByAltText(title).closest("a")).toHaveAttribute("href", expect.stringMatching(/\/certificates\/[^/]+\.pdf$/));
   });
+});
+
+ test("rejects invalid email without making a delivery request", () => {
+  global.fetch = jest.fn();
+  mount(<Contact enabled/>);
+  fireEvent.change(screen.getByRole("textbox", { name: "Email" }), { target: { value: "invalid" } });
+  fireEvent.change(screen.getByLabelText("Message"), { target: { value: "A final-year internship opportunity" } });
+  fireEvent.submit(screen.getByRole("form", { name: "Contact" }));
+  expect(global.fetch).not.toHaveBeenCalled();
+  expect(screen.getByRole("status")).toHaveTextContent("valid email address");
+});
+test("shows the certifications without images before the certificate gallery", () => {
+  mount(<Certifications/>);
+  const notes = document.querySelector(".certificate-notes");
+  const gallery = document.querySelector(".certificate-gallery");
+  expect(notes.compareDocumentPosition(gallery) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  expect(notes).toHaveTextContent("Exploring SAP Business AI Platform Architecture");
+  expect(notes).toHaveTextContent("Introduction to SAP Cloud Application Programming Model");
 });

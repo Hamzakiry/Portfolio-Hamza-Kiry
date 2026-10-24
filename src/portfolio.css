@@ -270,8 +270,9 @@ a, button { -webkit-tap-highlight-color:transparent; }
 .certificate-preview img { display:block; width:100%; height:210px; object-fit:contain; background:#fff; padding:6px; transition:transform .2s; }
 .certificate-preview:hover img { transform:scale(1.025); }
 .certificate-preview > span { display:flex; align-items:center; gap:8px; padding:12px 16px 0; font-size:10px; color:var(--mint); line-height:1.8; }
-.certificate-notes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; border-top:1px solid var(--line); margin-top:26px; padding-top:12px; }
-.certificate-notes > li { border-bottom:0; }
+.certificate-notes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; border-bottom:1px solid var(--line); margin:0 0 24px; padding:0 0 22px; }
+.certificate-notes > li { border:1px solid var(--line); border-radius:8px; background:var(--ink); padding:16px; }
+.certificate-notes > li:last-child { border-bottom:1px solid var(--line); }
 @media(max-width:960px) { .certificate-gallery,.certificate-notes,.resume-skills .skill-groups { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:600px) { .certificate-gallery,.certificate-notes,.resume-skills .skill-groups { grid-template-columns:1fr; } .certificate-preview img { height:250px; } }
 

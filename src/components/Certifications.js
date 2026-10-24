@@ -40,14 +40,14 @@ export default function Certifications() {
   const withoutDocument = sapAchievements.filter(item => !documents[item.title]);
   return <article className="resume-card resume-certifications">
     <h3><Award size={20}/><Text value="Certifications"/></h3>
+    <ul className="certificate-list certificate-notes">{withoutDocument.map(item => <li key={item.title}>
+      <h4>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{item.title} <ArrowUpRight size={13}/></a> : item.title}</h4>
+      <p className={item.pending ? "certification-pending" : "certification-earned"}>{item.pending ? <Clock3 size={13}/> : <CheckCircle2 size={13}/>}<Text value="SAP · "/><Text value={item.status}/></p>
+    </li>)}</ul>
     <ul className="certificate-list certificate-gallery">{certificates.map(item => <li key={item.title}>
       <CertificateDocument title={item.title}/>
       <h4>{item.title}</h4>
       <p>{item.issuer}<Text value=" · "/><Text value={item.status}/></p>
-    </li>)}</ul>
-    <ul className="certificate-list certificate-notes">{withoutDocument.map(item => <li key={item.title}>
-      <h4>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{item.title} <ArrowUpRight size={13}/></a> : item.title}</h4>
-      <p className={item.pending ? "certification-pending" : "certification-earned"}>{item.pending ? <Clock3 size={13}/> : <CheckCircle2 size={13}/>}<Text value="SAP · "/><Text value={item.status}/></p>
     </li>)}</ul>
   </article>;
 }

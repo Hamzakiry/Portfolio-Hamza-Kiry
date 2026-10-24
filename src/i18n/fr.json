@@ -149,5 +149,8 @@
   "Your name and message are processed by FormSubmit to deliver your email.": "Votre nom et votre message sont traités par FormSubmit pour transmettre votre e-mail.",
   "Direct sending is awaiting activation. You can still contact me by email or LinkedIn.": "L’envoi direct est en attente d’activation. Vous pouvez toujours me contacter par e-mail ou sur LinkedIn.",
   "The delivery service has accepted your message. Thank you!": "Le service d’envoi a accepté votre message. Merci !",
-  "Sending is awaiting email activation. Your message has not been confirmed as delivered.": "L’envoi est en attente de validation de l’adresse e-mail. La réception de votre message n’est pas confirmée."
+  "Sending is awaiting email activation. Your message has not been confirmed as delivered.": "L’envoi est en attente de validation de l’adresse e-mail. La réception de votre message n’est pas confirmée.",
+  "I’m seeking a six-month final-year internship in France, available from March 2027. Leave your email and message to discuss an opportunity.": "Je recherche un stage de fin d’études de six mois en France, à partir de mars 2027. Laissez votre e-mail et votre message pour échanger sur une opportunité.",
+  "Your email and message are processed by FormSubmit to deliver your email.": "Votre adresse e-mail et votre message sont traités par FormSubmit pour transmettre votre demande.",
+  "Please enter a valid email address and your message.": "Veuillez saisir une adresse e-mail valide et votre message."
 }
