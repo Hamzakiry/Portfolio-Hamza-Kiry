@@ -27,3 +27,10 @@ Le domaine .vercel.app est un sous-domaine gratuit, pas un domaine .io acheté. 
 ## Contact
 
 Le service d'envoi FormSubmit reste soumis à sa validation de boîte mail et à un test de réception réel. Changer d'adresse d'hébergement ne valide pas automatiquement ce service.
+
+
+## Nom et icône dans Google — correction du 24 octobre 2026
+
+Le site dispose d’une icône portrait PNG 96 px, d’un favicon ICO, d’icônes mobiles et du nom « Hamza Kiry Portfolio » dans le manifeste, Open Graph et les données WebSite. Google gère le nom du site au niveau du domaine ou sous-domaine, pas du sous-dossier GitHub Pages. La nouvelle adresse de production Vercel doit être ajoutée comme propriété dans Search Console, puis son sitemap.xml soumis et sa page d’accueil inspectée. Cela ne garantit ni le nom affiché ni le classement.
+
+La compilation Vercel utilise désormais VERCEL_PROJECT_PRODUCTION_URL pour la canonical, Open Graph, le graphe JSON-LD, le sitemap et robots.txt. L’ancienne adresse Vercel supposée a été retirée. Si les variables système sont désactivées, les activer dans Vercel ou définir PORTFOLIO_SITE_URL avec l’adresse de production réelle. Le build standard GitHub Pages est conservé. La validation locale du build a réussi ; le déploiement Vercel et la nouvelle propriété Search Console restent à vérifier.

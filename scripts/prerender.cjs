@@ -10,7 +10,12 @@ const configuredAssetBase = process.env.PUBLIC_URL ?? new URL(packageInfo.homepa
 const assetPath = /^https?:\/\//.test(configuredAssetBase) ? new URL(configuredAssetBase).pathname : configuredAssetBase;
 process.env.PUBLIC_URL = assetPath.replace(/\/$/, "");
 const buildDirectory = path.resolve(root, process.env.BUILD_PATH || "build");
-const siteUrl = new URL(process.env.PORTFOLIO_SITE_URL || `${packageInfo.homepage.replace(/\/$/, "")}/`);
+// Use the stable production hostname assigned by Vercel, never a guessed project slug.
+const vercelProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+if (process.env.VERCEL && !process.env.PORTFOLIO_SITE_URL && !vercelProductionUrl) {
+  throw new Error("Enable Vercel system environment variables or set PORTFOLIO_SITE_URL to the production URL");
+}
+const siteUrl = new URL(process.env.PORTFOLIO_SITE_URL || (vercelProductionUrl ? `https://${vercelProductionUrl}/` : `${packageInfo.homepage.replace(/\/$/, "")}/`));
 if (siteUrl.protocol !== "https:" || siteUrl.search || siteUrl.hash) throw new Error("PORTFOLIO_SITE_URL must be a clean HTTPS URL");
 const canonicalSite = siteUrl.href.replace(/\/$/, "") + "/";
 const previousSite = packageInfo.homepage.replace(/\/$/, "") + "/";
@@ -53,7 +58,7 @@ if (token) {
 fs.writeFileSync(output, html);
 const sitemapPath = path.join(buildDirectory, "sitemap.xml");
 fs.writeFileSync(sitemapPath, fs.readFileSync(sitemapPath, "utf8").split(previousSite).join(canonicalSite));
-if (process.env.PORTFOLIO_SITE_URL) {
+if (canonicalSite !== previousSite) {
   fs.writeFileSync(path.join(buildDirectory, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${canonicalSite}sitemap.xml\n`);
 }
 console.log(`Pre-rendered existing homepage (${Buffer.byteLength(markup)} bytes).`);

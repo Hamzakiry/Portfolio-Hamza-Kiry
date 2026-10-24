@@ -4,7 +4,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "env": {
-    "PUBLIC_URL": "/",
-    "PORTFOLIO_SITE_URL": "https://hamzakiry-portfolio.vercel.app/"
+    "PUBLIC_URL": "/"
   }
 }
