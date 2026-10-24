@@ -99,3 +99,11 @@ test("shows the certifications without images before the certificate gallery", (
   expect(notes).toHaveTextContent("Exploring SAP Business AI Platform Architecture");
   expect(notes).toHaveTextContent("Introduction to SAP Cloud Application Programming Model");
 });
+
+test("the send button is enabled by default without opening an email application", () => {
+  global.fetch = jest.fn();
+  mount(<Contact/>);
+  expect(screen.getByRole("button", { name: "Send message" })).toBeEnabled();
+  expect(global.fetch).not.toHaveBeenCalled();
+  expect(screen.queryByRole("link", { name: "Open email app" })).not.toBeInTheDocument();
+});

@@ -17,7 +17,7 @@ export async function sendContactMessage({ email, message, language, signal }) {
   if (!response.ok || (result.success !== true && result.success !== "true")) throw new Error("Message not accepted");
   return "sent";
 }
-export default function Contact({ enabled = process.env.REACT_APP_CONTACT_ENABLED === "true" }) {
+export default function Contact({ enabled = process.env.REACT_APP_CONTACT_ENABLED !== "false" }) {
   const { t, language } = useLanguage();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
