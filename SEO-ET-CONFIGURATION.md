@@ -69,3 +69,13 @@ Voir CERTIFICATES.md pour la correspondance des dix PDF. Deux justificatifs manq
 - Le contact a été recentré sur la candidature à un stage PFE, en français et en anglais.
 
 - Demande d’indexation acceptée : Google confirme « Indexation demandée » et l’ajout de l’URL à sa file d’attente d’exploration prioritaire. Aucune affirmation d’indexation effective ni de classement n’est faite.
+
+## Mise à jour : indexation confirmée et contact direct préparé
+
+Après actualisation du rapport Inspection de l’URL, Google affiche « Cette URL est sur Google » et « La page est indexée ». L’ancien rapport affiché auparavant n’était plus à jour. Ceci confirme l’indexation, pas le classement sur la requête Hamza Kiry. La consultation directe de www.google.com a été refusée par l’autorisation du navigateur ; aucun classement n’a donc été vérifié dans les résultats.
+
+Les dix aperçus de certificats sont désormais affichés directement dans une galerie responsive du mini-CV, sans volet à ouvrir, avec les PDF originaux au clic.
+
+Le contact a été remplacé par un bouton Envoyer qui utilise une requête AJAX, sans ouverture de messagerie. Son intégration est testée localement avec des réponses simulées (succès, erreur, activation en attente, double clic). L’accès réel au fournisseur FormSubmit a été refusé par le contrôle d’autorisation du navigateur. Aucun message ni e-mail d’activation n’a été envoyé à ce service. Le service reste désactivé tant que le propriétaire n’a pas autorisé son utilisation, validé l’adresse de réception et confirmé un test réel. REACT_APP_CONTACT_ENABLED reste false par défaut. Aucun secret SMTP n’est placé dans le navigateur.
+
+Pour activer : autoriser le fournisseur, effectuer une première soumission d’activation à hamza.kiry2@gmail.com, faire confirmer le lien reçu par le propriétaire, puis tester depuis le domaine public la réception du message et seulement ensuite activer REACT_APP_CONTACT_ENABLED=true dans le build publié. Ne pas considérer un simple HTTP 200 ou une demande d’activation comme preuve de réception.

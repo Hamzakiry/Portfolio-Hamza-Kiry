@@ -24,22 +24,30 @@ function CertificateDocument({ title }) {
   const document = documents[title];
   if (!document) return null;
   const base = `${process.env.PUBLIC_URL}/certificates/${document.file}`;
-  return <details className="certificate-document"><summary><Text value="View certificate"/></summary>
+  return <div className="certificate-document">
     <a href={`${base}.pdf`} target="_blank" rel="noopener noreferrer" className="certificate-preview">
       <img src={`${base}.webp`} alt={title} width={document.width} height={document.height} loading="lazy" decoding="async"/>
       <span><Text value="Open full-resolution certificate"/> <ArrowUpRight size={14}/></span>
     </a>
-  </details>;
+  </div>;
 }
 
 export default function Certifications() {
+  const certificates = [
+    ...sapAchievements.filter(item => documents[item.title]).map(item => ({ ...item, issuer: "SAP" })),
+    ...otherAchievements.map(([title, issuer, status]) => ({ title, issuer, status })),
+  ];
+  const withoutDocument = sapAchievements.filter(item => !documents[item.title]);
   return <article className="resume-card resume-certifications">
-    <h3><Award size={20}/><Text value={" Certifications"}/></h3>
-    <ul className="certificate-list">{sapAchievements.map(item => <li key={item.title}>
-      <h4>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{item.title} <ArrowUpRight size={13}/></a> : item.title}</h4>
-      <p className={item.pending ? "certification-pending" : "certification-earned"}>{item.pending ? <Clock3 size={13}/> : <CheckCircle2 size={13}/>}<Text value={" SAP · "}/><Text value={item.status}/></p>
+    <h3><Award size={20}/><Text value="Certifications"/></h3>
+    <ul className="certificate-list certificate-gallery">{certificates.map(item => <li key={item.title}>
       <CertificateDocument title={item.title}/>
+      <h4>{item.title}</h4>
+      <p>{item.issuer}<Text value=" · "/><Text value={item.status}/></p>
     </li>)}</ul>
-    <details className="other-certifications"><summary><Text value={"Other certifications ("}/>{otherAchievements.length}<Text value={")"}/></summary><ul className="certificate-list">{otherAchievements.map(([title,issuer,date]) => <li key={title}><h4>{title}</h4><p>{issuer}<Text value={" · "}/><Text value={date}/></p><CertificateDocument title={title}/></li>)}</ul></details>
+    <ul className="certificate-list certificate-notes">{withoutDocument.map(item => <li key={item.title}>
+      <h4>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{item.title} <ArrowUpRight size={13}/></a> : item.title}</h4>
+      <p className={item.pending ? "certification-pending" : "certification-earned"}>{item.pending ? <Clock3 size={13}/> : <CheckCircle2 size={13}/>}<Text value="SAP · "/><Text value={item.status}/></p>
+    </li>)}</ul>
   </article>;
 }

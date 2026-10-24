@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Contact, { messageEmailLink } from "./Contact";
+import Contact from "./Contact";
 import Projects from "./Projects";
 import { LanguageProvider } from "./i18n/Language";
 import Certifications from "./components/Certifications";
@@ -19,25 +19,61 @@ test("switches project copy and navigation without changing repository links", (
   fireEvent.click(screen.getByRole("button", { name: "English" }));
   expect(screen.getByRole("heading", { name: "House Price Prediction using Machine Learning" })).toBeInTheDocument();
 });
-test("prepares actual contact details without claiming delivery", () => {
-  mount(<Contact/>);
+function fillContact() {
   fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Élodie & Co" } });
-  fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Bonjour !\nProjet IA ?" } });
-  const url = new URL(screen.getByRole("link", { name: "Open email app" }).href);
-  expect(url.pathname).toBe("hamza.kiry2@gmail.com");
-  expect(url.searchParams.get("body")).toBe("Élodie & Co\n\nBonjour !\nProjet IA ?");
-  expect(screen.getByText(/No message is sent automatically/)).toBeInTheDocument();
-  expect(screen.getAllByRole("textbox")).toHaveLength(2);
+  fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Bonjour Hamza, une opportunité PFE." } });
+}
+function mockDelivery(response) { global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => response }); }
+afterEach(() => { delete global.fetch; });
+test("does not send before provider authorization and email activation", () => {
+  global.fetch = jest.fn();
+  mount(<Contact enabled={false}/>);
+  expect(screen.getByRole("button", { name: "Send message" })).toBeDisabled();
+  expect(global.fetch).not.toHaveBeenCalled();
+  expect(screen.queryByRole("link", { name: "Open email app" })).not.toBeInTheDocument();
 });
-test("empty contact fields do not open the email client", () => {
-  mount(<Contact/>);
-  fireEvent.click(screen.getByRole("link", { name: "Open email app" }));
-  expect(screen.getByRole("status")).toHaveTextContent("Please enter your name and message.");
-  expect(messageEmailLink(" Hamza ", " Bonjour ", "fr")).toContain("subject=Contact%20pour%20un%20stage%20PFE");
+test("sends name and message in place without opening a mail client", async () => {
+  mockDelivery({ success: "true", message: "Email sent successfully" });
+  mount(<Contact enabled/>);
+  fillContact();
+  fireEvent.submit(screen.getByRole("form", { name: "Contact" }));
+  await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("accepted your message"));
+  const [url, request] = global.fetch.mock.calls[0];
+  expect(url).toBe("https://formsubmit.co/ajax/hamza.kiry2@gmail.com");
+  expect(JSON.parse(request.body)).toMatchObject({ name: "Élodie & Co", message: "Bonjour Hamza, une opportunité PFE." });
+  expect(screen.getByLabelText("Message")).toHaveValue("");
+});
+test("activation responses never claim a successful delivery and keep the draft", async () => {
+  mockDelivery({ success: "true", message: "Please activate your email address" });
+  mount(<Contact enabled/>);
+  fillContact();
+  fireEvent.submit(screen.getByRole("form", { name: "Contact" }));
+  await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("awaiting email activation"));
+  expect(screen.getByLabelText("Message")).toHaveValue("Bonjour Hamza, une opportunité PFE.");
+});
+test("service rejection preserves the draft for a retry", async () => {
+  mockDelivery({ success: "false", message: "Unavailable" });
+  mount(<Contact enabled/>);
+  fillContact();
+  fireEvent.submit(screen.getByRole("form", { name: "Contact" }));
+  await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("could not be sent"));
+  expect(screen.getByLabelText("Message")).toHaveValue("Bonjour Hamza, une opportunité PFE.");
+});
+test("blocks repeated clicks while sending", async () => {
+  let done;
+  global.fetch = jest.fn().mockReturnValue(new Promise(resolve => { done = resolve; }));
+  mount(<Contact enabled/>);
+  fillContact();
+  const form = screen.getByRole("form", { name: "Contact" });
+  fireEvent.submit(form); fireEvent.submit(form);
+  expect(global.fetch).toHaveBeenCalledTimes(1);
+  done({ ok: true, json: async () => ({ success: true }) });
+  await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("accepted your message"));
 });
 test("provides the ten real documents without assigning a different SAP course to missing proof", () => {
   mount(<Certifications/>);
   expect(Object.keys(documents)).toHaveLength(10);
+  expect(document.querySelectorAll(".resume-certifications details")).toHaveLength(0);
   expect(documents["Exploring SAP Business AI Platform Architecture"]).toBeUndefined();
   expect(documents["Introduction to SAP Cloud Application Programming Model"]).toBeUndefined();
   expect(documents["Exploring SAP Business Technology Platform"].file).toBe("sap-business-technology-platform");
