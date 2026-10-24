@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portfolio-Hamza-Kiry/static/css/main.aafa862f.css",
-    "main.js": "/Portfolio-Hamza-Kiry/static/js/main.9a23b5c5.js",
+    "main.css": "/Portfolio-Hamza-Kiry/static/css/main.0075c829.css",
+    "main.js": "/Portfolio-Hamza-Kiry/static/js/main.de09729f.js",
     "static/js/787.8517b185.chunk.js": "/Portfolio-Hamza-Kiry/static/js/787.8517b185.chunk.js",
     "static/media/Pro9.webp": "/Portfolio-Hamza-Kiry/static/media/Pro9.14ddc2622cf474e73861.webp",
     "static/media/Pro3.webp": "/Portfolio-Hamza-Kiry/static/media/Pro3.e4df2542336540359efd.webp",
@@ -17,12 +17,12 @@
     "static/media/Pro10.webp": "/Portfolio-Hamza-Kiry/static/media/Pro10.6e5a7b68651cd8101f95.webp",
     "static/media/Card_1.webp": "/Portfolio-Hamza-Kiry/static/media/Card_1.7c100d8d2b963819c037.webp",
     "index.html": "/Portfolio-Hamza-Kiry/index.html",
-    "main.aafa862f.css.map": "/Portfolio-Hamza-Kiry/static/css/main.aafa862f.css.map",
-    "main.9a23b5c5.js.map": "/Portfolio-Hamza-Kiry/static/js/main.9a23b5c5.js.map",
+    "main.0075c829.css.map": "/Portfolio-Hamza-Kiry/static/css/main.0075c829.css.map",
+    "main.de09729f.js.map": "/Portfolio-Hamza-Kiry/static/js/main.de09729f.js.map",
     "787.8517b185.chunk.js.map": "/Portfolio-Hamza-Kiry/static/js/787.8517b185.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aafa862f.css",
-    "static/js/main.9a23b5c5.js"
+    "static/css/main.0075c829.css",
+    "static/js/main.de09729f.js"
   ]
 }
