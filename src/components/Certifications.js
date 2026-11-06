@@ -3,11 +3,11 @@ import { Award, ArrowUpRight, CheckCircle2, Clock3 } from "lucide-react";
 import documents from "../data/certificateDocuments.json";
 
 const sapAchievements = [
+  { title: "SAP Certified — Positioning SAP Business AI Platform", status: "In progress", pending: true },
   { title: "Exploring SAP Business AI Platform Architecture", status: "November 2026", link: "https://badger.learning.sap.com/verify/xypuc-lunos-gyhyl-cadif-lahyd" },
   { title: "Introduction to SAP Cloud Application Programming Model", status: "October 2026", link: "https://learning.sap.com/courses/introduction-to-sap-cloud-application-programming-model" },
   { title: "Introducing SAP Business AI Platform", status: "August 2026" },
   { title: "Exploring SAP Business Technology Platform", status: "September 2026" },
-  { title: "SAP Certified — Positioning SAP Business AI Platform", status: "In progress", pending: true },
 ];
 const otherAchievements = [
   ["Convolutional Neural Networks", "DeepLearning.AI", "June 2026"],
