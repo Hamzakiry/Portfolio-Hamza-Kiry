@@ -5,7 +5,7 @@ import PortfolioNav from "./components/PortfolioNav";
 import PortfolioFooter from "./components/PortfolioFooter";
 import ResumeOverview from "./components/ResumeOverview";
 import { ProjectsVisual, ContactVisual } from "./components/AboutVisuals";
-import Card1 from "./images/hamza-kiry-studio.webp";
+import Card1 from "./images/Card_1.webp";
 
 export default function Home() {
   const { t } = useLanguage();
