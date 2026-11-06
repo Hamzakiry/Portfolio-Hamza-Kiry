@@ -6,7 +6,7 @@ export default function PageMetadata() {
   const { language } = useLanguage();
   const { pathname } = useLocation();
   useEffect(() => {
-    const base = language === "fr" ? "Hamza Kiry | Étudiant ingénieur IA & Big Data · SAP" : "Hamza Kiry | AI & Big Data Engineering Student · SAP";
+    const base = "Hamza Kiry Portfolio";
     const prefix = pathname === "/projects" ? (language === "fr" ? "Projets | " : "Projects | ") : pathname === "/contact" ? "Contact | " : "";
     document.title = prefix + base;
     const description = language === "fr" ? "Portfolio de Hamza Kiry, étudiant ingénieur en IA et Big Data à Agadir, Maroc. Projets de machine learning, analyse de données, ERP et SAP BTP." : "Hamza Kiry, final-year AI & Big Data engineering student in Agadir, Morocco. Explore machine learning, data analytics, ERP and SAP BTP projects.";

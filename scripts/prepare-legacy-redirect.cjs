@@ -8,14 +8,14 @@ const html = String.raw`<!doctype html>
 <html lang="fr"><head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Hamza Kiry Portfolio | IA &amp; Big Data</title>
+<title>Hamza Kiry Portfolio</title>
 <meta name="description" content="Portfolio de Hamza Kiry, étudiant ingénieur en IA et Big Data. Retrouvez mes projets, certifications et CV."/>
 <meta name="google-site-verification" content="4Se9ZSrSuTzjrOvj-OuhBqFCtH-VfA7XY5zvNXwtYhE"/>
 <meta name="robots" content="index,follow"/>
 <link rel="canonical" href="${target}"/>
 <link rel="icon" type="image/png" sizes="96x96" href="${target}favicon.png"/>
 <meta property="og:site_name" content="Hamza Kiry Portfolio"/>
-<meta property="og:title" content="Hamza Kiry Portfolio | IA &amp; Big Data"/>
+<meta property="og:title" content="Hamza Kiry Portfolio"/>
 <meta property="og:url" content="${target}"/>
 <meta property="og:image" content="${target}hamza-kiry.webp"/>
 <script>
