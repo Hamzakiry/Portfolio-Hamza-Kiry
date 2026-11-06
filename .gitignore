@@ -26,3 +26,5 @@ yarn-error.log*
 .vercel
 # Alternate static deployment build
 /build-vercel
+
+/build-legacy

@@ -34,3 +34,8 @@ Le service d'envoi FormSubmit reste soumis à sa validation de boîte mail et à
 Le site dispose d’une icône portrait PNG 96 px, d’un favicon ICO, d’icônes mobiles et du nom « Hamza Kiry Portfolio » dans le manifeste, Open Graph et les données WebSite. Google gère le nom du site au niveau du domaine ou sous-domaine, pas du sous-dossier GitHub Pages. La nouvelle adresse de production Vercel doit être ajoutée comme propriété dans Search Console, puis son sitemap.xml soumis et sa page d’accueil inspectée. Cela ne garantit ni le nom affiché ni le classement.
 
 La compilation Vercel utilise désormais VERCEL_PROJECT_PRODUCTION_URL pour la canonical, Open Graph, le graphe JSON-LD, le sitemap et robots.txt. L’ancienne adresse Vercel supposée a été retirée. Si les variables système sont désactivées, les activer dans Vercel ou définir PORTFOLIO_SITE_URL avec l’adresse de production réelle. Le build standard GitHub Pages est conservé. La validation locale du build a réussi ; le déploiement Vercel et la nouvelle propriété Search Console restent à vérifier.
+
+
+## Adresse unique du portfolio — 6 novembre 2026
+
+L’ancienne page GitHub Pages redirige désormais immédiatement vers https://hamza-kiry-portfolio.vercel.app/ : canonical et meta refresh immédiate, avec script conservant les routes #/contact et #/projects. Le générateur scripts/prepare-legacy-redirect.cjs produit index.html et 404.html. Le déploiement GitHub Pages utilise build-legacy avec --add pour conserver les fichiers existants et actualise aussi les deux PDF de CV. La compilation Vercel reste inchangée. Google devra explorer de nouveau les deux adresses pour actualiser le résultat de recherche ; son nom de site et son icône ne peuvent pas être forcés immédiatement.
