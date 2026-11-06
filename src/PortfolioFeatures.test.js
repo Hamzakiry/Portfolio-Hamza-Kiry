@@ -70,15 +70,15 @@ test("blocks repeated clicks while sending", async () => {
   done({ ok: true, json: async () => ({ success: true }) });
   await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("accepted your message"));
 });
-test("provides the ten real documents without assigning a different SAP course to missing proof", () => {
+test("provides real documents and the newly verified SAP architecture badge", () => {
   mount(<Certifications/>);
-  expect(Object.keys(documents)).toHaveLength(10);
+  expect(Object.keys(documents)).toHaveLength(11);
   expect(document.querySelectorAll(".resume-certifications details")).toHaveLength(0);
-  expect(documents["Exploring SAP Business AI Platform Architecture"]).toBeUndefined();
+  expect(documents["Exploring SAP Business AI Platform Architecture"].issued).toBe("2026-11-06");
   expect(documents["Introduction to SAP Cloud Application Programming Model"]).toBeUndefined();
   expect(documents["Exploring SAP Business Technology Platform"].file).toBe("sap-business-technology-platform");
   Object.keys(documents).forEach(title => {
-    expect(screen.getByAltText(title).closest("a")).toHaveAttribute("href", expect.stringMatching(/\/certificates\/[^/]+\.pdf$/));
+    expect(screen.getByAltText(title).closest("a")).toHaveAttribute("href", documents[title].verification || expect.stringMatching(/\/certificates\/[^/]+\.pdf$/));
   });
 });
 
@@ -96,7 +96,9 @@ test("shows the certifications without images before the certificate gallery", (
   const notes = document.querySelector(".certificate-notes");
   const gallery = document.querySelector(".certificate-gallery");
   expect(notes.compareDocumentPosition(gallery) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-  expect(notes).toHaveTextContent("Exploring SAP Business AI Platform Architecture");
+  expect(notes).not.toHaveTextContent("Exploring SAP Business AI Platform Architecture");
+  expect(gallery).toHaveTextContent("Exploring SAP Business AI Platform Architecture");
+  expect(gallery).toHaveTextContent("November 2026");
   expect(notes).toHaveTextContent("Introduction to SAP Cloud Application Programming Model");
 });
 

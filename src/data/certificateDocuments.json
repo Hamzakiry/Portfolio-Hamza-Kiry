@@ -48,5 +48,14 @@
     "file": "python-pro-bootcamp",
     "width": 1100,
     "height": 819
+  },
+  "Exploring SAP Business AI Platform Architecture": {
+    "file": "sap-business-ai-platform-architecture",
+    "width": 1000,
+    "height": 1000,
+    "verification": "https://badger.learning.sap.com/verify/xypuc-lunos-gyhyl-cadif-lahyd",
+    "issued": "2026-11-06",
+    "kind": "Course Completion",
+    "level": "Advanced"
   }
 }

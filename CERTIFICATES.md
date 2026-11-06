@@ -18,3 +18,11 @@ Les PDF originaux ont été copiés sans modification ; les aperçus WebP sont r
 Justificatifs manquants : Exploring SAP Business AI Platform Architecture ; Introduction to SAP Cloud Application Programming Model. Le document Exploring SAP Business Technology Platform ne remplace pas le premier.
 
 SAP Certified — Positioning SAP Business AI Platform reste « In progress » ; aucun certificat de réussite n’est affiché pour cet examen.
+
+
+## Badge vérifié le 6 novembre 2026
+
+- Exploring SAP Business AI Platform Architecture — SAP Learning, Course Completion, Advanced Level. Émis à Hamza KIRY le 6 novembre 2026.
+- Justificatif : https://badger.learning.sap.com/verify/xypuc-lunos-gyhyl-cadif-lahyd
+- Image officielle téléchargée depuis la page SAP ; miniature WebP locale. La carte existante a été actualisée, pas dupliquée. Son bouton ouvre la vérification SAP. Aucun faux PDF de certificat n’a été créé.
+- CV FR/EN mis à jour sur une page : attestation ajoutée, QR code de 18 mm vers https://hamza-kiry-portfolio.vercel.app/ et adresse lisible/cliquable. Les textes restent extractibles ; QR codes décodés à partir du rendu final. Les versions précédentes sont conservées dans l’historique Git.

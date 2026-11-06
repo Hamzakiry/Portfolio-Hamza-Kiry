@@ -3,7 +3,7 @@ import { Award, ArrowUpRight, CheckCircle2, Clock3 } from "lucide-react";
 import documents from "../data/certificateDocuments.json";
 
 const sapAchievements = [
-  { title: "Exploring SAP Business AI Platform Architecture", status: "October 2026", link: "https://learning.sap.com/courses/exploring-sap-business-ai-platform-architecture" },
+  { title: "Exploring SAP Business AI Platform Architecture", status: "November 2026", link: "https://badger.learning.sap.com/verify/xypuc-lunos-gyhyl-cadif-lahyd" },
   { title: "Introduction to SAP Cloud Application Programming Model", status: "October 2026", link: "https://learning.sap.com/courses/introduction-to-sap-cloud-application-programming-model" },
   { title: "Introducing SAP Business AI Platform", status: "August 2026" },
   { title: "Exploring SAP Business Technology Platform", status: "September 2026" },
@@ -25,9 +25,9 @@ function CertificateDocument({ title }) {
   if (!document) return null;
   const base = `${process.env.PUBLIC_URL}/certificates/${document.file}`;
   return <div className="certificate-document">
-    <a href={`${base}.pdf`} target="_blank" rel="noopener noreferrer" className="certificate-preview">
+    <a href={document.verification || `${base}.pdf`} target="_blank" rel="noopener noreferrer" className="certificate-preview">
       <img src={`${base}.webp`} alt={title} width={document.width} height={document.height} loading="lazy" decoding="async"/>
-      <span><Text value="Open full-resolution certificate"/> <ArrowUpRight size={14}/></span>
+      <span><Text value={document.verification ? "Verify official SAP badge" : "Open full-resolution certificate"}/> <ArrowUpRight size={14}/></span>
     </a>
   </div>;
 }
