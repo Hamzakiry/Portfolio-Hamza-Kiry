@@ -1,5 +1,6 @@
 import { Text, useLanguage } from "./i18n/Language";
 import { products } from "./profileData/projects";
+import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import PortfolioNav from "./components/PortfolioNav";
 import PortfolioFooter from "./components/PortfolioFooter";
@@ -7,20 +8,21 @@ import PortfolioFooter from "./components/PortfolioFooter";
 export default function Projects() {
   const { t } = useLanguage();
   return <div className="portfolio-site"><PortfolioNav/><main id="main-content" tabIndex={-1} className="projects-page">
-    <div className="projects-heading"><span className="eyebrow"><Text value={"SELECTED WORK / 10 PROJECTS"}/></span><h1><Text value={"Ideas turned into"}/><br/><span className="accent"><Text value={"real-world projects."}/></span></h1><p><Text value={"Explore all the projects showcased in my portfolio and click to view each repository."}/></p></div>
+    <div className="projects-heading"><span className="eyebrow"><Text value="SELECTED WORK"/> / {products.length} <Text value="PROJECTS"/></span><h1><Text value={"Ideas turned into"}/><br/><span className="accent"><Text value={"real-world projects."}/></span></h1><p><Text value={"Explore my projects, their technical details and source repositories."}/></p></div>
         <div className="project-grid">
-          {products.map((project) => (
-            <a
+          {products.map((project) => {
+            const Card = project.detailsPath ? Link : "a";
+            const destination = project.detailsPath ? { to: project.detailsPath } : { href: project.link, target: "_blank", rel: "noopener noreferrer" };
+            return (
+            <Card
               key={project.title}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...destination}
               className="project-card"
             >
               <div className="project-image">
                 <img
                   loading="lazy" decoding="async" src={project.thumbnail}
-                  alt={t(project.title)}
+                  alt={t(project.title === "SAP Incident Management" ? "Customer incident list in SAP Fiori Elements" : project.title)}
                   className="h-60 w-full object-cover transition duration-300 group-hover:scale-105"
                 />
               </div>
@@ -34,11 +36,11 @@ export default function Projects() {
                   <Text value={project.description}/>
                 </p>
 
-                <div className="project-cta"><Text value={" View repository "}/><ArrowUpRight size={17}/>
+                <div className="project-cta"><Text value={project.detailsPath ? "View project details" : " View repository "}/><ArrowUpRight size={17}/>
                 </div>
               </div>
-            </a>
-          ))}
+            </Card>
+          );})}
         </div>
 </main><PortfolioFooter/></div>;
 }

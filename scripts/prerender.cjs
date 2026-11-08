@@ -43,7 +43,7 @@ const { MemoryRouter } = require("react-router-dom");
 const Home = require("../src/Home").default;
 const { LanguageProvider } = require("../src/i18n/Language");
 const markup = renderToString(React.createElement(LanguageProvider, null, React.createElement(MemoryRouter, null, React.createElement(Home))))
-  .replace(/href="\/(projects|contact)?"/g, (_, route = "") => `href="${process.env.PUBLIC_URL}/#/${route}"`);
+  .replace(/href="\/((?:projects|contact)(?:\/[a-z0-9-]+)?)?"/g, (_, route = "") => `href="${process.env.PUBLIC_URL}/#/${route}"`);
 const output = path.join(buildDirectory, "index.html");
 let html = fs.readFileSync(output, "utf8");
 if (!html.includes('<div id="root"></div>')) throw new Error("Build root not found; refusing to silently skip pre-rendering");

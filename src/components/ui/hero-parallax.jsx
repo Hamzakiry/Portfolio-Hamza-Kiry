@@ -16,7 +16,7 @@ export const HeroParallax = ({ products, children }) => {
     {children}
     <div className="showcase-heading"><span className="eyebrow"><Text value={"A GLIMPSE OF MY WORK"}/></span><Link to="/projects"><Text value={"Explore all projects "}/><ArrowUpRight size={16}/></Link></div>
     <div className="project-showcase">
-      {[products.slice(0, 5), products.slice(5, 10)].map((row, index) => <motion.div key={index} className="showcase-row" style={{ x: reduced ? 0 : index === 0 ? forward : reverse }}>
+      {[products.slice(0, Math.ceil(products.length / 2)), products.slice(Math.ceil(products.length / 2))].map((row, index) => <motion.div key={index} className="showcase-row" style={{ x: reduced ? 0 : index === 0 ? forward : reverse }}>
         {row.map(product => <ProductCard key={product.title} product={product}/>)}
       </motion.div>)}
     </div>
@@ -39,8 +39,10 @@ export const Header = () => {
 
 export const ProductCard = ({ product }) => {
   const { t } = useLanguage();
-  return <a href={product.link} target="_blank" rel="noopener noreferrer" className="showcase-card">
+  const Card = product.detailsPath ? Link : "a";
+  const destination = product.detailsPath ? { to: product.detailsPath } : { href: product.link, target: "_blank", rel: "noopener noreferrer" };
+  return <Card {...destination} className="showcase-card">
   <div className="showcase-image"><img src={product.thumbnail} width="600" height="400" loading="lazy" decoding="async" alt={t(product.title)}/></div>
   <div className="showcase-caption"><h2><Text value={product.title}/></h2><ArrowUpRight size={18}/></div>
-</a>;
+</Card>;
 };

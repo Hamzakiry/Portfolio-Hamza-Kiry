@@ -1,3 +1,4 @@
+import IncidentManagement from "./IncidentManagement";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Contact from "./Contact";
@@ -108,4 +109,18 @@ test("the send button is enabled by default without opening an email application
   expect(screen.getByRole("button", { name: "Send message" })).toBeEnabled();
   expect(global.fetch).not.toHaveBeenCalled();
   expect(screen.queryByRole("link", { name: "Open email app" })).not.toBeInTheDocument();
+});
+
+
+test("SAP case study distinguishes guided practice and real evidence from certification", () => {
+  mount(<IncidentManagement/>);
+  expect(screen.getByRole("heading", { name: "SAP Incident Management" })).toBeInTheDocument();
+  expect(screen.getByText(/SAP CLD200 guided project/)).toBeInTheDocument();
+  expect(screen.getByText(/Kyma was not implemented/)).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "View GitHub repository" })).toHaveAttribute("href", "https://github.com/Hamzakiry/incident-management");
+  expect(document.querySelectorAll(".project-evidence-grid img")).toHaveLength(4);
+  expect(screen.getByText(/marked Skipped/)).toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button", { name: "Français" }));
+  expect(screen.getByRole("heading", { name: "Un suivi structuré des incidents du support client" })).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "Retour aux projets" })).toHaveAttribute("href", "/projects");
 });

@@ -6,10 +6,11 @@ import { products } from './profileData/projects';
 
 beforeEach(() => { window.scrollTo = jest.fn(); });
 
-test('keeps all ten complete projects and exchanges Ecommerce with House Price Prediction', () => {
-  expect(products).toHaveLength(10);
-  expect(products[2].title).toBe('House Price Prediction using Machine Learning');
-  expect(products[9].title).toBe('Ecommerce');
+test('keeps the original ten projects and adds the guided SAP project', () => {
+  expect(products).toHaveLength(11);
+  const original = products.filter(project => project.title !== "SAP Incident Management");
+  expect(original[2].title).toBe('House Price Prediction using Machine Learning');
+  expect(original[9].title).toBe('Ecommerce');
   products.forEach(project => {
     expect(project.description).toBeTruthy();
     expect(project.thumbnail).toBeTruthy();
@@ -17,7 +18,7 @@ test('keeps all ten complete projects and exchanges Ecommerce with House Price P
   });
   render(<MemoryRouter><Projects/></MemoryRouter>);
   products.forEach(project => {
-    expect(screen.getByRole('heading', { name: project.title }).closest('a')).toHaveAttribute('href', project.link);
+    expect(screen.getByRole('heading', { name: project.title }).closest('a')).toHaveAttribute('href', project.detailsPath || project.link);
   });
 });
 

@@ -1,3 +1,4 @@
+import sapIncidentImage from "../images/sap-incident-management/incidents-list.webp";
 import Pro1 from "../images/Pro1.webp";
 import Pro2 from "../images/Pro2.webp";
 import Pro3 from "../images/Pro3.webp";
@@ -86,3 +87,12 @@ export const products = [...projectData];
 const ecommerceIndex = products.findIndex(project => project.title === "Ecommerce");
 const houseIndex = products.findIndex(project => project.title === "House Price Prediction using Machine Learning");
 [products[ecommerceIndex], products[houseIndex]] = [products[houseIndex], products[ecommerceIndex]];
+
+products.unshift({
+  title: "SAP Incident Management",
+  link: "https://github.com/Hamzakiry/incident-management",
+  detailsPath: "/projects/sap-incident-management",
+  thumbnail: sapIncidentImage,
+  technologies: ["SAP CAP", "Node.js", "CDS", "OData V4", "Fiori Elements", "SAP HANA Cloud", "SAP BTP", "XSUAA"],
+  description: "Customer incident management with SAP CAP and Fiori Elements, HANA Cloud persistence and an MTA deployment on SAP BTP Cloud Foundry. Guided SAP CLD200 practice in a Trial environment, November 2026.",
+});
