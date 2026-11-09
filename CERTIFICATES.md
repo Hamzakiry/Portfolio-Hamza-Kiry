@@ -31,3 +31,8 @@ SAP Certified — Positioning SAP Business AI Platform reste « In progress » ;
 ## Introducing Joule Studio — 9 novembre 2026
 
 Titre et achèvement le 9 novembre 2026 confirmés dans la liste My Learning SAP Learning de Hamza KIRY, cours AIJ200, niveau débutant. Attestation de fin de cours ; pas de qualification SAP Certified revendiquée. Le lien personnel du badge n’a pas pu être récupéré ; le portfolio pointe vers https://learning.sap.com/courses/introducing-joule-studio. Aucune image de badge ni URL de justificatif appartenant à un tiers n’est utilisée. LinkedIn est déjà renseigné selon l’utilisateur ; aucun doublon n’a été ajouté. Les CV FR/EN incluent l’entrée en deuxième position, après la certification en cours, et conservent le projet SAP Incident Management.
+
+
+### Justificatif Joule Studio fourni et vérifié
+
+Le badge personnel https://badger.learning.sap.com/verify/xehak-numyh-fuvat-lutov-cufer confirme Introducing Joule Studio, Hamza KIRY, SAP Learning, 9 novembre 2026, Course Completion, Beginner Level. L’image officielle est conservée en PNG et optimisée en WebP ; elle est affichée dans la galerie. Le lien du cours a été remplacé par le justificatif. Les deux CV comportent un lien cliquable sur le titre de cette attestation. La certification en cours demeure en première position.

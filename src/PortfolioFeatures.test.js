@@ -71,9 +71,11 @@ test("blocks repeated clicks while sending", async () => {
   done({ ok: true, json: async () => ({ success: true }) });
   await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("accepted your message"));
 });
-test("provides real documents and the newly verified SAP architecture badge", () => {
+test("provides real documents and both verified SAP badges", () => {
   mount(<Certifications/>);
-  expect(Object.keys(documents)).toHaveLength(11);
+  expect(Object.keys(documents)).toHaveLength(12);
+  expect(documents["Introducing Joule Studio"].verification).toBe("https://badger.learning.sap.com/verify/xehak-numyh-fuvat-lutov-cufer");
+  expect(documents["Introducing Joule Studio"].issued).toBe("2026-11-09");
   expect(document.querySelectorAll(".resume-certifications details")).toHaveLength(0);
   expect(documents["Exploring SAP Business AI Platform Architecture"].issued).toBe("2026-11-06");
   expect(documents["Introduction to SAP Cloud Application Programming Model"]).toBeUndefined();

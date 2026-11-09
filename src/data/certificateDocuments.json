@@ -57,5 +57,14 @@
     "issued": "2026-11-06",
     "kind": "Course Completion",
     "level": "Advanced"
+  },
+  "Introducing Joule Studio": {
+    "file": "introducing-joule-studio",
+    "width": 1000,
+    "height": 1000,
+    "verification": "https://badger.learning.sap.com/verify/xehak-numyh-fuvat-lutov-cufer",
+    "issued": "2026-11-09",
+    "kind": "Course Completion",
+    "level": "Beginner"
   }
 }
