@@ -1,3 +1,4 @@
+import { products } from "../profileData/projects";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "../i18n/Language";
@@ -7,7 +8,8 @@ export default function PageMetadata() {
   const { pathname } = useLocation();
   useEffect(() => {
     const base = "Hamza Kiry Portfolio";
-    const prefix = pathname === "/projects/sap-incident-management" ? "SAP Incident Management | " : pathname === "/projects" ? (language === "fr" ? "Projets | " : "Projects | ") : pathname === "/contact" ? "Contact | " : "";
+    const project = products.find(item => item.detailsPath === pathname);
+    const prefix = project ? project.title + " | " : pathname === "/projects" ? (language === "fr" ? "Projets | " : "Projects | ") : pathname === "/contact" ? "Contact | " : "";
     document.title = prefix + base;
     const description = language === "fr" ? "Portfolio de Hamza Kiry, étudiant ingénieur en IA et Big Data à Agadir, Maroc. Projets de machine learning, analyse de données, ERP et SAP BTP." : "Hamza Kiry, final-year AI & Big Data engineering student in Agadir, Morocco. Explore machine learning, data analytics, ERP and SAP BTP projects.";
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);

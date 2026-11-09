@@ -7,6 +7,7 @@ import Home from "./Home";
 import "./portfolio.css";
 import Projects from "./Projects";
 import IncidentManagement from "./IncidentManagement";
+import ProjectDetail from "./ProjectDetail";
 import CardList from "./components/CardList";
 import CardModal from "./components/CardModal";
 import Footer from "./components/Footer";
@@ -88,6 +89,7 @@ const App = () => {
 
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/sap-incident-management" element={<IncidentManagement />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/contact" element={<Contact />} />
 
           <Route

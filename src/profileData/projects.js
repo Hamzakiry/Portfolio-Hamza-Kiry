@@ -1,3 +1,4 @@
+import { projectDetails } from "./projectDetails";
 import sapIncidentImage from "../images/sap-incident-management/incidents-list.webp";
 import Pro1 from "../images/Pro1.webp";
 import Pro2 from "../images/Pro2.webp";
@@ -95,4 +96,13 @@ products.unshift({
   thumbnail: sapIncidentImage,
   technologies: ["SAP CAP", "Node.js", "CDS", "OData V4", "Fiori Elements", "SAP HANA Cloud", "SAP BTP", "XSUAA"],
   description: "Customer incident management with SAP CAP and Fiori Elements, HANA Cloud persistence and an MTA deployment on SAP BTP Cloud Foundry. Guided SAP CLD200 practice in a Trial environment, November 2026.",
+});
+
+// Every gallery and homepage card opens its case study before the source repository.
+products.forEach(project => {
+  const details = projectDetails[project.title];
+  if (!details) return;
+  project.detailsPath = `/projects/${details.slug}`;
+  project.details = details;
+  if (details.technologies) project.technologies = details.technologies;
 });
