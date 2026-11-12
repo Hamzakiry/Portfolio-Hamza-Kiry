@@ -102,7 +102,6 @@ products.unshift({
 products.unshift({
   title: "Atelier Stock — SAP CAP",
   link: "https://github.com/Hamzakiry/atelier-stock-sap-cap",
-  liveLink: "https://atelier-stock-sap-cap.netlify.app",
   thumbnail: stockImage,
   technologies: ["SAP CAP", "Node.js", "CDS", "OData V4", "SQLite", "PostgreSQL", "PWA"],
   description: "Bilingual French/Arabic stock management for a pastry-supplies shop: batches, FEFO stock issues, stocktaking, roles, audit trails and backups. Built with SAP CAP and an installable web interface."
