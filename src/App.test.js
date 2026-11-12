@@ -6,9 +6,9 @@ import { products } from './profileData/projects';
 
 beforeEach(() => { window.scrollTo = jest.fn(); });
 
-test('keeps the original ten projects and adds the guided SAP project', () => {
-  expect(products).toHaveLength(11);
-  const original = products.filter(project => project.title !== "SAP Incident Management");
+test('keeps the original ten projects and both SAP projects', () => {
+  expect(products).toHaveLength(12);
+  const original = products.filter(project => !["SAP Incident Management", "Atelier Stock — SAP CAP"].includes(project.title));
   expect(original[2].title).toBe('House Price Prediction using Machine Learning');
   expect(original[9].title).toBe('Ecommerce');
   products.forEach(project => {

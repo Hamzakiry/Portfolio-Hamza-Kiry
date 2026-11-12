@@ -225,5 +225,25 @@ export const projectDetails = {
       "scikit-learn",
       "Matplotlib"
     ]
+  },
+  "Atelier Stock — SAP CAP": {
+    "slug": "atelier-stock-sap-cap",
+    "context": "PERSONAL SAP PROJECT / STOCK MANAGEMENT / 2026",
+    "goal": "Make daily stock operations simple for a Moroccan pastry-supplies shop, with a clear French/Arabic interface and traceable quantities.",
+    "features": [
+      "Model products, batches, suppliers and movements in CDS, exposed through read-only OData V4 projections and validated CAP actions.",
+      "Receive batches, propose FEFO stock issues, confirm without duplicate deductions and correct stock after a justified physical count.",
+      "Separate Viewer and Manager permissions, record movement authors and catalogue changes, and provide verified SQLite backup/restore tools.",
+      "Offer a responsive French/Arabic interface with right-to-left layout, four daily actions and an installable PWA; 14 automated scenarios pass."
+    ],
+    "flow": [
+      "French / Arabic PWA",
+      "OData V4 / CAP / Node.js",
+      "CDS entities / transactions",
+      "SQLite locally / PostgreSQL web"
+    ],
+    "learning": "Practised CDS associations, service projections, CAP handlers, atomic transactions, authorization, persistent request deduplication and database migrations. The PostgreSQL web adapter and Netlify function were tested locally on a dedicated database.",
+    "scope": "Personal project with fictional public demonstration data. Real stock onboarding is pending. Hugging Face, Fiori Elements and SAP BTP deployment are not implemented in this application. Android installation uses a PWA, without an APK or Play Store release.",
+    "previewCaption": "Dashboard captured from the application using fictional test data. Product and client data from the shop are excluded from the public repository."
   }
 };

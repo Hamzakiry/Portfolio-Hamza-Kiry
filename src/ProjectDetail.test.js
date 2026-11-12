@@ -37,7 +37,7 @@ test('opens a detail page from a homepage card and returns to the gallery', () =
   fireEvent.click(screen.getByRole('heading',{name:project.title}));
   expect(screen.getByRole('heading',{name:'Project purpose'})).toBeInTheDocument();
   fireEvent.click(screen.getByRole('link',{name:'Back to projects'}));
-  expect(document.querySelectorAll('.project-card')).toHaveLength(11);
+  expect(document.querySelectorAll('.project-card')).toHaveLength(12);
 });
 
 test('unknown project offers a return to the gallery', () => {

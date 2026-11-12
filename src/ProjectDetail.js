@@ -40,7 +40,7 @@ export default function ProjectDetail() {
         <span className="eyebrow">04 / <Text value="PROJECT SCREENSHOTS"/></span><h2 id="project-preview"><Text value="Project preview"/></h2>
         <div className="project-evidence-grid"><figure className="evidence-wide">
           <a href={project.thumbnail} target="_blank" rel="noopener noreferrer" aria-label={t("Open full-resolution image")+': '+t(project.title)}><img src={project.thumbnail} alt={t(project.title)} loading="lazy" decoding="async"/></a>
-          <figcaption><h3><Text value={project.title}/></h3><p><Text value="Existing portfolio visual. Open the image at full resolution."/></p><a href={project.thumbnail} target="_blank" rel="noopener noreferrer"><Text value="Open full-resolution image"/><ArrowUpRight size={14}/></a></figcaption>
+          <figcaption><h3><Text value={project.title}/></h3><p><Text value={details.previewCaption || "Existing portfolio visual. Open the image at full resolution."}/></p><a href={project.thumbnail} target="_blank" rel="noopener noreferrer"><Text value="Open full-resolution image"/><ArrowUpRight size={14}/></a></figcaption>
         </figure></div>
       </section>
     </>}

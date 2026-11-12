@@ -1,3 +1,4 @@
+import stockImage from "../images/atelier-stock-sap-cap/dashboard.webp";
 import { projectDetails } from "./projectDetails";
 import sapIncidentImage from "../images/sap-incident-management/incidents-list.webp";
 import Pro1 from "../images/Pro1.webp";
@@ -96,6 +97,14 @@ products.unshift({
   thumbnail: sapIncidentImage,
   technologies: ["SAP CAP", "Node.js", "CDS", "OData V4", "Fiori Elements", "SAP HANA Cloud", "SAP BTP", "XSUAA"],
   description: "Customer incident management with SAP CAP and Fiori Elements, HANA Cloud persistence and an MTA deployment on SAP BTP Cloud Foundry. Guided SAP CLD200 practice in a Trial environment, November 2026.",
+});
+
+products.unshift({
+  title: "Atelier Stock — SAP CAP",
+  link: "https://github.com/Hamzakiry/atelier-stock-sap-cap",
+  thumbnail: stockImage,
+  technologies: ["SAP CAP", "Node.js", "CDS", "OData V4", "SQLite", "PostgreSQL", "PWA"],
+  description: "Bilingual French/Arabic stock management for a pastry-supplies shop: batches, FEFO stock issues, stocktaking, roles, audit trails and backups. Built with SAP CAP and an installable web interface."
 });
 
 // Every gallery and homepage card opens its case study before the source repository.
