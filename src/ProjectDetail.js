@@ -21,6 +21,7 @@ export default function ProjectDetail() {
         <p className="project-context"><Text value={details.context}/></p>
         <p><Text value={project.description}/></p>
         {project.technologies?.length > 0 && <ul className="project-tags" aria-label={t("Technologies")}>{project.technologies.map(tech => <li key={tech}>{tech}</li>)}</ul>}
+        {project.liveLink && <a href={project.liveLink} className="primary-button" target="_blank" rel="noopener noreferrer"><Text value="Try the demo"/><ArrowUpRight size={17}/></a>}
         <a href={project.link} className="primary-button" target="_blank" rel="noopener noreferrer"><Text value="View GitHub repository"/><ArrowUpRight size={17}/></a>
       </header>
       <section className="project-detail-section" aria-labelledby="project-goal">
