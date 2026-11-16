@@ -29,6 +29,7 @@ export default function PortfolioNav() {
       <nav id="main-navigation" aria-label={t("Main navigation")} className={`nav-links ${open ? "is-open" : ""}`}>
         <Link to="/" aria-current={location.pathname === "/" ? "page" : undefined}><Text value={"Home"}/></Link>
         <Link to="/projects" aria-current={location.pathname === "/projects" ? "page" : undefined}><Text value={"Projects"}/></Link>
+        <Link to="/certifications" aria-current={location.pathname === "/certifications" ? "page" : undefined}><Text value="Certifications"/></Link>
         <button onClick={() => section("about")}><Text value={"About"}/></button>
         <Link to="/contact" aria-current={location.pathname === "/contact" ? "page" : undefined}><Text value={"Contact "}/><ArrowUpRight size={14}/></Link>
       </nav>

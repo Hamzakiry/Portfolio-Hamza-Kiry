@@ -1,3 +1,5 @@
+import { useState } from "react";
+import FilterBar from "./components/FilterBar";
 import { Text, useLanguage } from "./i18n/Language";
 import { products } from "./profileData/projects";
 import { Link } from "react-router-dom";
@@ -5,12 +7,28 @@ import { ArrowUpRight } from "lucide-react";
 import PortfolioNav from "./components/PortfolioNav";
 import PortfolioFooter from "./components/PortfolioFooter";
 
+const categories = {
+ "Atelier Stock — SAP CAP": ["SAP", "Web & ERP"],
+ "SAP Incident Management": ["SAP", "Web & ERP"],
+ "Intelligent Quotation with Odoo 17 & Local AI": ["AI", "Web & ERP"],
+ "Flight-Radar-Analytics-Dashboard": ["Big Data"],
+ "COVID-19 Global Dashboard": ["Big Data"],
+ "House Price Prediction using Machine Learning": ["AI"],
+ "Face Recognition Kotlin": ["AI", "Mobile"],
+ "Ecommerce": ["Web & ERP"], "Sneaks": ["Web & ERP", "Mobile"],
+ "Al Karama": ["Web & ERP"], "Hosmony RSE Atlas": ["Web & ERP"],
+ "Python Invaders Game": ["Other"]
+};
 export default function Projects() {
+  const [filter, setFilter] = useState("All");
+  const visible = products.filter(project => filter === "All" || categories[project.title]?.includes(filter));
   const { t } = useLanguage();
   return <div className="portfolio-site"><PortfolioNav/><main id="main-content" tabIndex={-1} className="projects-page">
     <div className="projects-heading"><span className="eyebrow"><Text value="SELECTED WORK"/> / {products.length} <Text value="PROJECTS"/></span><h1><Text value={"Ideas turned into"}/><br/><span className="accent"><Text value={"real-world projects."}/></span></h1><p><Text value={"Explore my projects, their technical details and source repositories."}/></p></div>
+    <FilterBar options={["All", "AI", "Big Data", "SAP", "Web & ERP", "Mobile", "Other"]} active={filter} onChange={setFilter}/>
+    <p className="filter-result" role="status">{visible.length} / {products.length} <Text value="PROJECTS"/></p>
         <div className="project-grid">
-          {products.map((project) => {
+          {visible.map((project) => {
             const Card = project.detailsPath ? Link : "a";
             const destination = project.detailsPath ? { to: project.detailsPath } : { href: project.link, target: "_blank", rel: "noopener noreferrer" };
             return (
@@ -44,3 +62,4 @@ export default function Projects() {
         </div>
 </main><PortfolioFooter/></div>;
 }
+

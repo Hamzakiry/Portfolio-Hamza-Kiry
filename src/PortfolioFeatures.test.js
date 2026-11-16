@@ -94,7 +94,7 @@ test("provides real documents and both verified SAP badges", () => {
   expect(global.fetch).not.toHaveBeenCalled();
   expect(screen.getByRole("status")).toHaveTextContent("valid email address");
 });
-test("shows the certifications without images before the certificate gallery", () => {
+test("keeps in-progress first and puts CAP without a document after the gallery", () => {
   mount(<Certifications/>);
   const notes = document.querySelector(".certificate-notes");
   const gallery = document.querySelector(".certificate-gallery");
@@ -102,7 +102,9 @@ test("shows the certifications without images before the certificate gallery", (
   expect(notes).not.toHaveTextContent("Exploring SAP Business AI Platform Architecture");
   expect(gallery).toHaveTextContent("Exploring SAP Business AI Platform Architecture");
   expect(gallery).toHaveTextContent("November 2026");
-  expect(notes).toHaveTextContent("Introduction to SAP Cloud Application Programming Model");
+  expect(notes).toHaveTextContent("In progress");
+  const cap = screen.getByRole("heading", { name: /Introduction to SAP Cloud Application Programming Model/ }).closest("ul");
+  expect(gallery.compareDocumentPosition(cap) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
 });
 
 test("the send button is enabled by default without opening an email application", () => {

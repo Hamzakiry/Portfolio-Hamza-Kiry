@@ -1,8 +1,10 @@
+import { useState } from "react";
+import FilterBar from "./FilterBar";
 import { Text } from "../i18n/Language";
 import { Award, ArrowUpRight, CheckCircle2, Clock3 } from "lucide-react";
 import documents from "../data/certificateDocuments.json";
 
-const sapAchievements = [
+export const sapAchievements = [
   { title: "SAP Certified — Positioning SAP Business AI Platform", status: "In progress", pending: true },
   { title: "Introducing Joule Studio", status: "November 2026", link: "https://badger.learning.sap.com/verify/xehak-numyh-fuvat-lutov-cufer" },
   { title: "Exploring SAP Business AI Platform Architecture", status: "November 2026", link: "https://badger.learning.sap.com/verify/xypuc-lunos-gyhyl-cadif-lahyd" },
@@ -21,7 +23,7 @@ const otherAchievements = [
   ["100 Days of Code: The Complete Python Pro Bootcamp", "Udemy", "June 2026"],
 ];
 
-function CertificateDocument({ title }) {
+export function CertificateDocument({ title }) {
   const document = documents[title];
   if (!document) return null;
   const base = `${process.env.PUBLIC_URL}/certificates/${document.file}`;
@@ -33,7 +35,17 @@ function CertificateDocument({ title }) {
   </div>;
 }
 
-export default function Certifications() {
+export const certificateCategories = ["All", "SAP", "AI", "Big Data", "Development", "Business"];
+export function certificateCategory(title) {
+ if (/SAP|Joule/.test(title)) return "SAP";
+ if (/Spark|Hadoop/.test(title)) return "Big Data";
+ if (/Neural|AI For/.test(title)) return "AI";
+ if (/Entrepreneurship/.test(title)) return "Business";
+ return "Development";
+}
+export default function Certifications({ filterable = false }) {
+  const [filter, setFilter] = useState("All");
+  const matches = item => filter === "All" || certificateCategory(item.title) === filter;
   const certificates = [
     ...sapAchievements.filter(item => documents[item.title]).map(item => ({ ...item, issuer: "SAP" })),
     ...otherAchievements.map(([title, issuer, status]) => ({ title, issuer, status })),
@@ -41,14 +53,19 @@ export default function Certifications() {
   const withoutDocument = sapAchievements.filter(item => !documents[item.title]);
   return <article className="resume-card resume-certifications">
     <h3><Award size={20}/><Text value="Certifications"/></h3>
-    <ul className="certificate-list certificate-notes">{withoutDocument.map(item => <li key={item.title}>
+    {filterable && <FilterBar options={certificateCategories} active={filter} onChange={setFilter}/>}
+    <ul className="certificate-list certificate-notes">{withoutDocument.filter(item => item.pending).filter(matches).map(item => <li key={item.title}>
       <h4>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{item.title} <ArrowUpRight size={13}/></a> : item.title}</h4>
       <p className={item.pending ? "certification-pending" : "certification-earned"}>{item.pending ? <Clock3 size={13}/> : <CheckCircle2 size={13}/>}<Text value="SAP · "/><Text value={item.status}/></p>
     </li>)}</ul>
-    <ul className="certificate-list certificate-gallery">{certificates.map(item => <li key={item.title}>
+    <ul className="certificate-list certificate-gallery">{certificates.filter(matches).map(item => <li key={item.title}>
       <CertificateDocument title={item.title}/>
       <h4>{item.title}</h4>
       <p>{item.issuer}<Text value=" · "/><Text value={item.status}/></p>
+    </li>)}</ul>
+    <ul className="certificate-list certificate-notes">{withoutDocument.filter(item => !item.pending).filter(matches).map(item => <li key={item.title}>
+      <h4>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">{item.title} <ArrowUpRight size={13}/></a> : item.title}</h4>
+      <p className={item.pending ? "certification-pending" : "certification-earned"}>{item.pending ? <Clock3 size={13}/> : <CheckCircle2 size={13}/>}<Text value="SAP · "/><Text value={item.status}/></p>
     </li>)}</ul>
   </article>;
 }

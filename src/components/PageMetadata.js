@@ -9,7 +9,7 @@ export default function PageMetadata() {
   useEffect(() => {
     const base = "Hamza Kiry Portfolio";
     const project = products.find(item => item.detailsPath === pathname);
-    const prefix = project ? project.title + " | " : pathname === "/projects" ? (language === "fr" ? "Projets | " : "Projects | ") : pathname === "/contact" ? "Contact | " : "";
+    const prefix = project ? project.title + " | " : pathname === "/projects" ? (language === "fr" ? "Projets | " : "Projects | ") : pathname === "/certifications" ? "Certifications | " : pathname === "/contact" ? "Contact | " : "";
     document.title = prefix + base;
     const description = language === "fr" ? "Portfolio de Hamza Kiry, étudiant ingénieur en IA et Big Data à Agadir, Maroc. Projets de machine learning, analyse de données, ERP et SAP BTP." : "Hamza Kiry, final-year AI & Big Data engineering student in Agadir, Morocco. Explore machine learning, data analytics, ERP and SAP BTP projects.";
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);

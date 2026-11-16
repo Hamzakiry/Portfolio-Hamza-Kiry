@@ -11,7 +11,7 @@ export default function PortfolioFooter() {
     </div>
     <div className="footer-inner">
       <div><Link to="/" className="brand"><Text value={"Hamza Kiry"}/><span className="accent"><Text value={"."}/></span></Link><p><Text value={"AI & Big Data engineering portfolio · SAP BTP & SAP Business AI Platform."}/></p></div>
-      <nav aria-label={t("Footer navigation")}><Link to="/"><Text value={"Home"}/></Link><Link to="/projects"><Text value={"Projects"}/></Link><Link to="/contact"><Text value={"Contact"}/></Link></nav>
+      <nav aria-label={t("Footer navigation")}><Link to="/"><Text value={"Home"}/></Link><Link to="/projects"><Text value={"Projects"}/></Link><Link to="/certifications"><Text value="Certifications"/></Link><Link to="/contact"><Text value={"Contact"}/></Link></nav>
       <div className="social-links"><a href="https://github.com/hamzakiry" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={20}/></a><a href="https://www.linkedin.com/in/hamza-kiry-750270349/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20}/></a><a href="mailto:hamza.kiry2@gmail.com" aria-label="Email"><Mail size={20}/></a></div>
     </div>
     <div className="footer-bottom"><span><Text value={"© Hamza Kiry "}/>{new Date().getFullYear()}<Text value={" · All rights reserved"}/></span><span><Text value={"Building. Learning. Creating."}/></span></div>

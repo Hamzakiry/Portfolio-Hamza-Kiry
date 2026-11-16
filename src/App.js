@@ -1,3 +1,4 @@
+import CertificationsPage from "./CertificationsPage";
 import Contact from "./Contact";
 import PageMetadata from "./components/PageMetadata";
 import { LanguageProvider } from "./i18n/Language";
@@ -90,6 +91,7 @@ const App = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/sap-incident-management" element={<IncidentManagement />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="/certifications" element={<CertificationsPage />} />
           <Route path="/contact" element={<Contact />} />
 
           <Route
