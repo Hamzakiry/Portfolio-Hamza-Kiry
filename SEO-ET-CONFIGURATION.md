@@ -85,3 +85,12 @@ Dernier ajustement : le contact demande désormais e-mail et message, avec valid
 ## Bouton activé à la demande du propriétaire
 
 Le bouton Envoyer est maintenant actif par défaut, sans ouverture de messagerie, avec REACT_APP_CONTACT_ENABLED=false comme option de suspension. Le destinataire reste hamza.kiry2@gmail.com. Aucun envoi de test réel ni e-mail d’activation n’a pu être déclenché : une règle enregistrée du navigateur bloque l’accès à formsubmit.co, y compris après la nouvelle demande du propriétaire. Le bouton actif ne prouve donc pas que la boîte est déjà validée par le fournisseur. Toute réponse d’activation est affichée comme telle, sans annonce de livraison. Le propriétaire doit débloquer l’accès au fournisseur et confirmer l’adresse si le service le demande ; un test de réception reste à faire. Les tests automatisés emploient uniquement des réponses simulées.
+
+## Nom et icône Google — 17 novembre 2026
+
+- Le site principal reste https://hamza-kiry-portfolio.vercel.app/ : titre, nom WebSite, URL canonique et icônes vérifiés en ligne.
+- L'ancienne racine https://hamzakiry.github.io/ renvoyait HTTP 404. Un dépôt public de redirection `Hamzakiry/Hamzakiry.github.io` fournit désormais une page d'accueil nommée « Hamza Kiry Portfolio », les données WebSite, favicon.png (96 × 96), favicon.ico et robots.txt. Redirection immédiate vers Vercel, sans copie de l'application.
+- Génération reproductible : `node scripts/prepare-github-root.cjs`, sortie locale `tmp/github-root-redirect/`. La publication du dépôt racine est distincte de celle du portfolio.
+- Google détermine les noms et favicons au niveau du domaine/sous-domaine, pas du sous-dossier. Les nouveaux signaux sont une préférence, pas une garantie d'affichage.
+- Demander une nouvelle exploration dans Search Console pour les propriétés déjà vérifiées (Vercel et ancienne URL projet). L'apparence des résultats ne se met pas à jour au moment du déploiement.
+- Références : https://developers.google.com/search/docs/appearance/site-names et https://developers.google.com/search/docs/appearance/favicon-in-search
