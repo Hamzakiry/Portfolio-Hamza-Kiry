@@ -6,7 +6,7 @@ import { ArrowDown, ArrowUpRight, Download, MapPin } from "lucide-react";
 import CertificateShowcase from "../CertificateShowcase";
 import HowIWork from "../HowIWork";
 import ExpertiseJourney from "../ExpertiseJourney";
-import portrait from "../../images/hamza-kiry-navy.webp";
+import portrait from "../../images/hamza-kiry-light-blue-gray.webp";
 
 export const HeroParallax = ({ products, children }) => {
   const ref = React.useRef(null);
