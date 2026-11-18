@@ -1,3 +1,5 @@
+import ContactGlobe from "./components/ContactGlobe";
+import "./components/contact-globe.css";
 import { useEffect, useRef, useState } from "react";
 import { Linkedin, Mail, Send } from "lucide-react";
 import PortfolioNav from "./components/PortfolioNav";
@@ -55,7 +57,7 @@ export default function Contact({ enabled = process.env.REACT_APP_CONTACT_ENABLE
           <button className="primary-button" type="submit" disabled={!enabled || status === "sending"} aria-describedby="email-notice">{t(status === "sending" ? "Sending…" : "Send message")}<Send size={17}/></button>
           <p className={`form-status ${status}`} role="status" aria-live="polite">{t(status === "sent" ? "The delivery service has accepted your message. Thank you!" : status === "activation" ? "Sending is awaiting email activation. Your message has not been confirmed as delivered." : status === "error" ? "The message could not be sent. Please try again or email me directly." : status === "invalid" ? "Please enter a valid email address and your message." : "")}</p>
         </form>
-        <aside className="contact-options resume-card"><h2>{t("Let’s connect")}</h2><a href="mailto:hamza.kiry2@gmail.com"><Mail size={20}/><span>{t("Write an email")}<small>hamza.kiry2@gmail.com</small></span></a><a href="https://www.linkedin.com/in/hamza-kiry-750270349/" target="_blank" rel="noopener noreferrer"><Linkedin size={20}/><span>{t("Open LinkedIn")}<small>Hamza Kiry</small></span></a></aside>
+        <div className="contact-side"><ContactGlobe/><aside className="contact-options resume-card"><h2>{t("Let’s connect")}</h2><a href="mailto:hamza.kiry2@gmail.com"><Mail size={20}/><span>{t("Write an email")}<small>hamza.kiry2@gmail.com</small></span></a><a href="https://www.linkedin.com/in/hamza-kiry-750270349/" target="_blank" rel="noopener noreferrer"><Linkedin size={20}/><span>{t("Open LinkedIn")}<small>Hamza Kiry</small></span></a></aside></div>
       </div>
     </main><PortfolioFooter/></div>;
 }
