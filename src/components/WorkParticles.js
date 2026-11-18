@@ -23,7 +23,7 @@ export default function WorkParticles({ phase, reduced }) {
   const element=canvas.current,ctx=element.getContext("2d");if(!ctx)return;
   const shapes=outlines.map(samplePaths);
   const particles=shapes[0].map((point,i)=>({x:point.x,y:point.y,vx:0,vy:0,seed:i*.71}));
-  const pointer={x:-999,y:-999};let width=0,height=0,frame=0,visible=true,previous=0,lastPhase=-1,settled=0;
+  const pointer={x:-999,y:-999};let width=0,height=0,frame=0,resizeFrame=0,visible=true,previous=0,lastPhase=-1,settled=0;
   const resize=()=>{const r=element.getBoundingClientRect();width=r.width;height=r.height;const dpr=Math.min(window.devicePixelRatio||1,2);element.width=Math.round(width*dpr);element.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);settled=0;start();};
   const position=e=>{if(e.pointerType==='touch'||motionReduced.current)return;const r=element.getBoundingClientRect();pointer.x=(e.clientX-r.left)/r.width*300;pointer.y=(e.clientY-r.top)/r.height*230;settled=0;start();};
   const leave=()=>{pointer.x=-999;pointer.y=-999;settled=0;start();};
@@ -46,13 +46,13 @@ export default function WorkParticles({ phase, reduced }) {
    if(!reduce&&settled<12)frame=requestAnimationFrame(draw);
   }
   function start(){if(!frame&&visible&&!document.hidden){previous=0;frame=requestAnimationFrame(draw);}}
-  const observer=new ResizeObserver(resize);observer.observe(element);
+  const observer=new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(resize);});observer.observe(element);
   const intersection=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){settled=0;start();}else{cancelAnimationFrame(frame);frame=0;} });intersection.observe(element);
   const visibility=()=>{if(!document.hidden){settled=0;start();}};document.addEventListener('visibilitychange',visibility);
   element.addEventListener('pointermove',position);element.addEventListener('pointerleave',leave);
   // Phase changes wake a settled canvas without an idle animation loop.
   const wake=()=>{settled=0;start();};element.addEventListener('work-phase',wake);
-  resize();return()=>{cancelAnimationFrame(frame);observer.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',visibility);element.removeEventListener('pointermove',position);element.removeEventListener('pointerleave',leave);element.removeEventListener('work-phase',wake);};
+  resize();return()=>{cancelAnimationFrame(frame);cancelAnimationFrame(resizeFrame);observer.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',visibility);element.removeEventListener('pointermove',position);element.removeEventListener('pointerleave',leave);element.removeEventListener('work-phase',wake);};
  },[]);
  useEffect(()=>{canvas.current?.dispatchEvent(new Event('work-phase'));},[phase,reduced]);
  return <canvas ref={canvas} className="work-particle-canvas" aria-hidden="true"/>;

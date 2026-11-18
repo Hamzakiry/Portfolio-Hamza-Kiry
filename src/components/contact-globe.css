@@ -6,7 +6,7 @@
 .globe-toggle{display:grid;place-items:center;width:31px;height:31px;border:1px solid #425146;border-radius:50%;color:var(--muted);flex-shrink:0;cursor:pointer;transition:color .2s,border-color .2s}
 .globe-toggle:hover{border-color:var(--mint);color:var(--mint)}
 .globe-stage{width:100%;aspect-ratio:1.1;position:relative}
-.globe-stage canvas{display:block;width:100%;height:100%;touch-action:pan-y;cursor:grab}
+.globe-stage canvas{display:block;position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y;cursor:grab}
 .globe-stage canvas:active{cursor:grabbing}
 .globe-location{display:flex;gap:7px;align-items:center;font-size:10px;line-height:1.7;color:var(--muted);border-top:1px solid var(--line);padding-top:15px;margin:0}
 .globe-location svg{color:var(--mint);flex-shrink:0}
@@ -16,5 +16,12 @@
 .contact-side .contact-options{padding:22px}
 .contact-side .contact-options h2{font-size:17px;margin-bottom:16px}
 .contact-side .contact-options>a{padding:15px 0}
+.footer-contact-globe .footer-contact-copy{min-width:0;display:grid;gap:28px}
+.footer-contact-globe .contact-email{width:100%;font-size:14px;padding:22px;max-width:none}
+.footer-contact-globe .contact-globe{width:100%;max-width:520px;justify-self:end}
+.footer-contact-globe .contact-globe .globe-location{font-size:10px;line-height:1.7;margin:0;max-width:none;color:var(--muted)}
+.footer-contact-globe .globe-stage{aspect-ratio:1.2}
+@media(max-width:960px){.footer-contact-globe .contact-globe{justify-self:start;max-width:520px}}
+@media(max-width:600px){.footer-contact-globe .contact-email{font-size:12px;padding:18px 14px}.footer-contact-globe .globe-stage{aspect-ratio:1.05}}
 @media(max-width:900px){.contact-page .contact-page-grid{gap:22px;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}.contact-globe{padding:16px}.globe-heading .eyebrow{font-size:7px;letter-spacing:.8px}.globe-availability{font-size:8px}}
 @media(max-width:700px){.contact-page .contact-page-grid{grid-template-columns:1fr}.contact-side{gap:20px}.contact-globe{padding:18px}.globe-stage{max-width:420px;margin:auto;aspect-ratio:1.05}.globe-heading .eyebrow{font-size:8px;letter-spacing:1px}.globe-location{font-size:10px}.globe-availability{font-size:9px}}

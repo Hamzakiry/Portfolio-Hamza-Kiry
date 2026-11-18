@@ -1,13 +1,18 @@
 import { Text, useLanguage } from "../i18n/Language";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import ContactGlobe from "./ContactGlobe";
 
-export default function PortfolioFooter() {
+export default function PortfolioFooter({ withGlobe = false }) {
   const { t } = useLanguage();
+  const emailLink = <a className="contact-email" href="mailto:hamza.kiry2@gmail.com"><Mail size={24}/><span><Text value={"hamza.kiry2@gmail.com"}/></span><ArrowUpRight size={24}/></a>;
   return <footer id="contact" className="portfolio-footer">
-    <div className="contact-inner">
+    <div className={`contact-inner ${withGlobe ? "footer-contact-globe" : ""}`}>
+      <div className="footer-contact-copy">
       <div><span className="eyebrow"><Text value={"CONTACT / LET’S CONNECT"}/></span><h2><Text value={"Looking for an AI & Big Data intern?"}/><br/><span><Text value={"Let’s connect."}/></span></h2><p><Text value={"I’m seeking a final-year internship in AI, Big Data or enterprise AI. I’d be happy to discuss an opportunity with your team."}/></p><Link to="/contact" className="secondary-button footer-form-link"><Text value="Send a message"/><ArrowUpRight size={16}/></Link></div>
-      <a className="contact-email" href="mailto:hamza.kiry2@gmail.com"><Mail size={24}/><span><Text value={"hamza.kiry2@gmail.com"}/></span><ArrowUpRight size={24}/></a>
+      {withGlobe && emailLink}
+      </div>
+      {withGlobe ? <ContactGlobe/> : emailLink}
     </div>
     <div className="footer-inner">
       <div><Link to="/" className="brand"><Text value={"Hamza Kiry"}/><span className="accent"><Text value={"."}/></span></Link><p><Text value={"AI & Big Data engineering portfolio · SAP BTP & SAP Business AI Platform."}/></p></div>

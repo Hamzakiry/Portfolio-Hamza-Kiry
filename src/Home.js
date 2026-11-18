@@ -52,5 +52,5 @@ export default function Home() {
         </div>
       </div>
 
-</main><PortfolioFooter/></div>;
+</main><PortfolioFooter withGlobe/></div>;
 }

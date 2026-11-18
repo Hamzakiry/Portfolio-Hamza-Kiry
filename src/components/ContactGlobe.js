@@ -55,14 +55,14 @@ function mountGlobe(canvas, status) {
  function mesh(data){const vertex=gl.createBuffer(),index=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,vertex);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data.vertices),gl.STATIC_DRAW);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(data.indices),gl.STATIC_DRAW);resources.push(()=>{gl.deleteBuffer(vertex);gl.deleteBuffer(index);});return{vertex,index,count:data.indices.length};}
  const earth=mesh(sphereMesh()),ribbons=mesh(ribbonMesh());
  const texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,createTexture());gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);resources.push(()=>gl.deleteTexture(texture));gl.uniform1i(uniforms.uMap,0);gl.enable(gl.DEPTH_TEST);
- let frame=0,last=0,angle=.45,drag=0,visible=false,width=1,height=1,disposed=false;
+ let frame=0,resizeFrame=0,last=0,angle=.45,drag=0,visible=false,width=1,height=1,disposed=false;
  function draw(now){frame=0;if(disposed||!visible||document.hidden||gl.isContextLost())return;if(last&&status.current.running)angle+=Math.min(now-last,50)*.00013;last=now;
  gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.uniform1f(uniforms.uRotation,angle+drag);gl.uniform1f(uniforms.uTilt,-.14);gl.uniform1f(uniforms.uAspect,width/height);
  function render(item,ribbon){gl.bindBuffer(gl.ARRAY_BUFFER,item.vertex);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,item.index);attributes.forEach((location,i)=>{gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,i===2?2:3,gl.FLOAT,false,32,i===0?0:i===1?12:24);});gl.uniform1f(uniforms.uRibbon,ribbon);gl.drawElements(gl.TRIANGLES,item.count,gl.UNSIGNED_SHORT,0);}
  render(earth,0);render(ribbons,1);if(status.current.running)frame=requestAnimationFrame(draw);
  }
  const wake=()=>{last=0;if(!frame&&!disposed&&visible&&!document.hidden)frame=requestAnimationFrame(draw);};
- const resize=new ResizeObserver(()=>{const rect=canvas.getBoundingClientRect();width=rect.width||1;height=rect.height||1;const ratio=Math.min(window.devicePixelRatio||1,1.75);canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);wake();});resize.observe(canvas);
+ const resize=new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{const rect=canvas.getBoundingClientRect();width=rect.width||1;height=rect.height||1;const ratio=Math.min(window.devicePixelRatio||1,1.75);const w=Math.round(width*ratio),h=Math.round(height*ratio);if(canvas.width!==w)canvas.width=w;if(canvas.height!==h)canvas.height=h;wake();});});resize.observe(canvas);
  const intersection=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)wake();else{cancelAnimationFrame(frame);frame=0;last=0;}},{rootMargin:'30px'});intersection.observe(canvas);
  const changeVisibility=()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else wake();};document.addEventListener('visibilitychange',changeVisibility);
  let down=false,startX=0,startDrag=0;
@@ -70,7 +70,7 @@ function mountGlobe(canvas, status) {
  const pointermove=e=>{if(down){drag=startDrag+(e.clientX-startX)*.009;wake();}};
  const pointerup=()=>{down=false;};
  canvas.addEventListener('pointerdown',pointerdown);canvas.addEventListener('pointermove',pointermove);window.addEventListener('pointerup',pointerup);canvas.addEventListener('pointercancel',pointerup);canvas.addEventListener('globe-state',wake);
- return()=>{disposed=true;cancelAnimationFrame(frame);resize.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',changeVisibility);canvas.removeEventListener('pointerdown',pointerdown);canvas.removeEventListener('pointermove',pointermove);window.removeEventListener('pointerup',pointerup);canvas.removeEventListener('pointercancel',pointerup);canvas.removeEventListener('globe-state',wake);resources.reverse().forEach(release=>release());};
+ return()=>{disposed=true;cancelAnimationFrame(frame);cancelAnimationFrame(resizeFrame);resize.disconnect();intersection.disconnect();document.removeEventListener('visibilitychange',changeVisibility);canvas.removeEventListener('pointerdown',pointerdown);canvas.removeEventListener('pointermove',pointermove);window.removeEventListener('pointerup',pointerup);canvas.removeEventListener('pointercancel',pointerup);canvas.removeEventListener('globe-state',wake);resources.reverse().forEach(release=>release());};
 }
 function StaticGlobe() {
  const paths=land.flatMap(polygon=>polygon.map(ring=>{let d='',pen=false;ring.forEach(([lon,lat])=>{const a=(lon-10)*Math.PI/180,b=lat*Math.PI/180,z=Math.cos(b)*Math.cos(a);if(z>0){const x=150+Math.cos(b)*Math.sin(a)*110,y=135-Math.sin(b)*110;d+=`${pen?'L':'M'}${x.toFixed(1)},${y.toFixed(1)}`;pen=true;}else pen=false;});return d;}));
