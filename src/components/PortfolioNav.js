@@ -25,7 +25,7 @@ export default function PortfolioNav() {
   return <header className="portfolio-nav">
     <a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); const main = document.getElementById("main-content"); main?.scrollIntoView(); main?.focus(); }}><Text value={"Skip to content"}/></a>
     <div className="nav-inner">
-      <Link to="/" className="brand"><img className="brand-portrait" src={portrait} width="43" height="43" alt=""/><span><Text value={"Hamza Kiry"}/></span></Link>
+      <Link to="/" className="brand" aria-label="Hamza Kiry Portfolio"><img className="brand-portrait" src={portrait} width="43" height="43" alt=""/><span><Text value={"Hamza Kiry"}/><small className="brand-site-name">Portfolio</small></span></Link>
       <nav id="main-navigation" aria-label={t("Main navigation")} className={`nav-links ${open ? "is-open" : ""}`}>
         <Link to="/" aria-current={location.pathname === "/" ? "page" : undefined}><Text value={"Home"}/></Link>
         <Link to="/projects" aria-current={location.pathname === "/projects" ? "page" : undefined}><Text value={"Projects"}/></Link>

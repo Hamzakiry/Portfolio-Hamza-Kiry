@@ -1,4 +1,5 @@
 import CertificationsPage from "./CertificationsPage";
+import "./components/brand.css";
 import Contact from "./Contact";
 import PageMetadata from "./components/PageMetadata";
 import { LanguageProvider } from "./i18n/Language";
