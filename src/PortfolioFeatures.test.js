@@ -73,7 +73,9 @@ test("blocks repeated clicks while sending", async () => {
 });
 test("provides real documents and both verified SAP badges", () => {
   mount(<Certifications/>);
-  expect(Object.keys(documents)).toHaveLength(12);
+  expect(Object.keys(documents)).toHaveLength(13);
+  expect(documents["Introducing the Architectural Methodologies"].verification).toBe("https://badger.learning.sap.com/verify/xorar-rinyr-kacet-tomek-dipot");
+  expect(documents["Introducing the Architectural Methodologies"].issued).toBe("2026-11-19");
   expect(documents["Introducing Joule Studio"].verification).toBe("https://badger.learning.sap.com/verify/xehak-numyh-fuvat-lutov-cufer");
   expect(documents["Introducing Joule Studio"].issued).toBe("2026-11-09");
   expect(document.querySelectorAll(".resume-certifications details")).toHaveLength(0);

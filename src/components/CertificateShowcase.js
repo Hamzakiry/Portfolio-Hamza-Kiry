@@ -8,7 +8,8 @@ import documents from "../data/certificateDocuments.json";
 // Keep the in-progress achievement first and unavailable documents last.
 const certificates = [
  ...sapAchievements.filter(item => item.pending),
- ...Object.keys(documents).map(title => ({ title, ...sapAchievements.find(item => item.title === title), document: documents[title] })),
+ ...sapAchievements.filter(item => documents[item.title]).map(item => ({ ...item, document: documents[item.title] })),
+ ...Object.keys(documents).filter(title => !sapAchievements.some(item => item.title === title)).map(title => ({ title, document: documents[title] })),
  ...sapAchievements.filter(item => !item.pending && !documents[item.title])
 ];
 export default function CertificateShowcase({ forward, reverse, reduced }) {

@@ -66,5 +66,14 @@
     "issued": "2026-11-09",
     "kind": "Course Completion",
     "level": "Beginner"
+  },
+  "Introducing the Architectural Methodologies": {
+    "file": "introducing-architectural-methodologies",
+    "width": 1000,
+    "height": 1000,
+    "verification": "https://badger.learning.sap.com/verify/xorar-rinyr-kacet-tomek-dipot",
+    "issued": "2026-11-19",
+    "kind": "Course Completion",
+    "level": "Advanced"
   }
 }

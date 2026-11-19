@@ -6,6 +6,7 @@ import documents from "../data/certificateDocuments.json";
 
 export const sapAchievements = [
   { title: "SAP Certified — Positioning SAP Business AI Platform", status: "In progress", pending: true },
+  { title: "Introducing the Architectural Methodologies", status: "November 2026", link: "https://badger.learning.sap.com/verify/xorar-rinyr-kacet-tomek-dipot" },
   { title: "Introducing Joule Studio", status: "November 2026", link: "https://badger.learning.sap.com/verify/xehak-numyh-fuvat-lutov-cufer" },
   { title: "Exploring SAP Business AI Platform Architecture", status: "November 2026", link: "https://badger.learning.sap.com/verify/xypuc-lunos-gyhyl-cadif-lahyd" },
   { title: "Introduction to SAP Cloud Application Programming Model", status: "October 2026", link: "https://learning.sap.com/courses/introduction-to-sap-cloud-application-programming-model" },
@@ -37,7 +38,7 @@ export function CertificateDocument({ title }) {
 
 export const certificateCategories = ["All", "SAP", "AI", "Big Data", "Development", "Business"];
 export function certificateCategory(title) {
- if (/SAP|Joule/.test(title)) return "SAP";
+ if (/SAP|Joule/.test(title) || documents[title]?.verification?.startsWith("https://badger.learning.sap.com/")) return "SAP";
  if (/Spark|Hadoop/.test(title)) return "Big Data";
  if (/Neural|AI For/.test(title)) return "AI";
  if (/Entrepreneurship/.test(title)) return "Business";

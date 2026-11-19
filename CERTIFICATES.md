@@ -36,3 +36,7 @@ Titre et achèvement le 9 novembre 2026 confirmés dans la liste My Learning SAP
 ### Justificatif Joule Studio fourni et vérifié
 
 Le badge personnel https://badger.learning.sap.com/verify/xehak-numyh-fuvat-lutov-cufer confirme Introducing Joule Studio, Hamza KIRY, SAP Learning, 9 novembre 2026, Course Completion, Beginner Level. L’image officielle est conservée en PNG et optimisée en WebP ; elle est affichée dans la galerie. Le lien du cours a été remplacé par le justificatif. Les deux CV comportent un lien cliquable sur le titre de cette attestation. La certification en cours demeure en première position.
+
+## Introducing the Architectural Methodologies — 19 November 2026
+Official SAP Learning Course Completion badge, Advanced Level, issued to Hamza KIRY on 19 November 2026. Verification: https://badger.learning.sap.com/verify/xorar-rinyr-kacet-tomek-dipot . The original PNG and optimized WebP are stored as introducing-architectural-methodologies. Added to the portfolio and both CVs after the in-progress entry; this is course completion, not an SAP certification exam.
+
